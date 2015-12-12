@@ -13,3 +13,4 @@ An app that guides users on a scavenger hunt for street art
 * As a user, when I've checked in to all the graffiti spots, I want to view a congratulatory message.
 
 ## Wireframe
+[link](https://github.com/maggielove/graffiti_hunt_app/issues/1)
