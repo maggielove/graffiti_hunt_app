@@ -11,3 +11,5 @@ An app that guides users on a scavenger hunt for street art
 * As a user, I want to be able to view the street art locations I've visited (along with accompanying photo and like information) whenever I log into the app.
 * As a user, I want to gain points each time I check in at a new street art spot.
 * As a user, when I've checked in to all the graffiti spots, I want to view a congratulatory message.
+
+## Wireframe
