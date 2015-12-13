@@ -1,5 +1,5 @@
 'use strict';
-const client_id =  'foo' //process.env.CLIENT_ID;
+const client_id = 'foo' //process.env.CLIENT_ID;
 const client_secret = 'bar' //process.env.CLIENT_SECRET;
 const push_secret = 'foobar' //process.env.PUSH_SECRET;
 
