@@ -8,7 +8,6 @@ let mongoose = require('mongoose');
 
 //Authenticate
 function authenticate(req, res){
-  console.log('determining token status');
   User.findOne({
     username: req.body.user.username
   }, function(err, user) {
@@ -28,6 +27,16 @@ function authenticate(req, res){
   }); //ends function(err, user)
 } //ends authenticate
 
+function redirect(req, res){
+  res.redirect('https://foursquare.com/oauth2/authenticate?client_id=' + client_id + '&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/')
+}
+
+function getAccessToken(req, res){
+  res.send({ access_token: access_token })
+}
+
 module.exports = {
-  authenticate: authenticate
+  authenticate: authenticate,
+  getAccessToken: getAccessToken,
+  redirect: redirect
 }

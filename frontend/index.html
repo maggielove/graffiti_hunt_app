@@ -3,12 +3,24 @@
   <head>
     <meta charset="utf-8">
     <title>graffiti hunter</title>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/test.js"></script>
+    <script src="js/placesController.js"></script>
+    <script src="js/usersController.js"></script>
   </head>
   <body>
-    <p>hello!</p>
-    <button id="credentials-test">sushi test</button>
-    <button id="foursquare-auth">Foursquare Auth</button>
-    <script type="text/javascript" src="js/test.js"></script>
+    <h2> graffiti hunt app</h2>
+    <nav>
+      <a ui-sref="index">Fake Index</a>
+      <a ui-sref="test">Test</a>
+    </nav>
+
+    <section ng-controller="UsersController as users" ui-view>
+    </section>
+
+    <!-- <button id="credentials-test">sushi test</button> -->
+
   </body>
 </html>

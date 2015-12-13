@@ -33,6 +33,7 @@ app.use('/', express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/node_modules'));
 app.use('/', routes)
 
+
 // app.get('https://api.foursquare.com/v2/venues/search?client_id=:client_id&client_secret=client_secret&ll=40.7,-74&query=sushi&v=20140806&m=foursquare', function(req, res){
 //   res.send(data);
 // });
