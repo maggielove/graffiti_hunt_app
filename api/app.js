@@ -9,6 +9,10 @@ let bodyParser = require('body-parser');
 let jwt = require('jsonwebtoken');
 let app = express();
 
+const client_id = process.env.CLIENT_ID;
+const client_secret = process.env.CLIENT_SECRET;
+const push_secret = process.env.PUSH_SECRET;
+
 let mongoose = require('mongoose');
 
 mongoose.connect(process.env.MONGOLAB_URI || 'mongodb://localhost/graffitiApp');
@@ -28,6 +32,14 @@ app.use(bodyParser.urlencoded({ extended:true }));
 app.use('/', express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/node_modules'));
 app.use('/', routes)
+
+// app.get('https://api.foursquare.com/v2/venues/search?client_id=:client_id&client_secret=client_secret&ll=40.7,-74&query=sushi&v=20140806&m=foursquare', function(req, res){
+//   res.send(data);
+// });
+
+// app.get('/hello', function(req, res){
+//   res.send('it\'s me')
+// })
 
 let server = app.listen(process.env.PORT || 3000, () => {
   let host = server.address().address;
