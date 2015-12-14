@@ -10,7 +10,25 @@ PlacesController.$inject = ['$http'];
 
 function PlacesController($http){
   let self = this;
+  self.all = [];
+  self.client_id = '';
+  self.client_secret = '';
+  self.getPlaces = getPlaces;
   self.getPlace = getPlace;
+
+  getPlaces();
+  function getPlaces(){
+    $http
+      ////note: WILL HAVE TO CHANGE THIS TO MATCH HEROKU ROUTES
+      .get('http://localhost:3000/places')
+      .then(function(response) {
+        self.all = response.data.places;
+        self.client_id = response.data.client_id;
+        self.client_secret = response.data.client_secret;
+        // self.client_id
+        //self.client_secret
+      })
+  }
 
   // let venueId = $('.listed-locations').id
   function getPlace() {

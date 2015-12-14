@@ -11,6 +11,9 @@ const code = 'foo' //req.query.code
 let usersController = require('../controllers/users');
 let placesController = require('../controllers/places');
 
+router.route('/places')
+  .get(placesController.findAll)
+
 router.route('/#/test')
   .get(placesController.getTest);
 

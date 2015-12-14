@@ -1,9 +1,9 @@
 var angularApp = angular.module('graffitiApp', ['ui.router'])
 
 angularApp.config(PlaceRouter);
-//
-function PlaceRouter($stateProvider, $urlRouteProvider) {
-  $urlRouteProvider.otherwise("/");
+
+function PlaceRouter($stateProvider, $urlRouterProvider) {
+  $urlRouterProvider.otherwise("/");
 
   $stateProvider
   .state('index', {
