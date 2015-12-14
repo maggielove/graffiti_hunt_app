@@ -11,10 +11,11 @@ PlacesController.$inject = ['$http'];
 function PlacesController($http){
   let self = this;
   self.all = [];
+  self.single = {};
   self.client_id = '';
   self.client_secret = '';
   self.getPlaces = getPlaces;
-  self.getPlace = getPlace;
+  self.viewPlace = viewPlace;
 
   getPlaces();
   function getPlaces(){
@@ -31,8 +32,11 @@ function PlacesController($http){
   }
 
   // let venueId = $('.listed-locations').id
-  function getPlace() {
+  function viewPlace(place) {
     $http
-      .get('https://api.foursquare.com/v2/venues/' + place.id + '?client_id=' + client_id + '&client_secret=' + client_secret + '&v=20151213')
+    .get('https://api.foursquare.com/v2/venues/' + place.venueId + '?client_id=' + self.client_id + '&client_secret=' + self.client_secret + '&v=20151213')
+    .then(function(response){
+      self.single = response.response.venue;
+    })
   }
 }
