@@ -32,15 +32,26 @@ app.use(bodyParser.urlencoded({ extended:true }));
 app.use('/', express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/node_modules'));
 app.use('/', routes)
+//enable cross-origin requests
+app.all('*', function(req, res, next) {
+  var responseSettings = {
+    'AccessControlAllowOrigin': req.headers.origin,
+    'AccessControlAllowHeaders': 'Content-Type,X-CSRF-Token,X-Requested-With,Accept, Accept-Version, Content-Length, Content-MD5, Date, X-Api-Version, X-File-Name',
+    'AccessControlAllowMethods': 'POST, GET, PUT, DELETE, OPTIONS',
+    'AccessControlAllowCredentials': true
+  };
 
+  res.header('Access-Control-Allow-Credentials', responseSettings.AccessControlAllowCredentials);
+  res.header('Access-Control-Allow-Origin', responseSettings.AccessControlAllowOrigin);
+  res.header('Access-Control-Allow-Headers', (req.headers['access-control-request-headers']) ? req.headers['access-control-request-headers'] : 'x-requested-with');
+  res.header('Access-Control-Allow-Methods', (req.headers['access-control-request-method']) ? req.headers['access-control-request-method'] : responseSettings.AccessControlAllowMethods);
 
-// app.get('https://api.foursquare.com/v2/venues/search?client_id=:client_id&client_secret=client_secret&ll=40.7,-74&query=sushi&v=20140806&m=foursquare', function(req, res){
-//   res.send(data);
-// });
-
-// app.get('/hello', function(req, res){
-//   res.send('it\'s me')
-// })
+  if ('OPTIONS' == req.method) {
+    res.send(200);
+  } else {
+    next();
+  }
+}) //ends app.all
 
 let server = app.listen(process.env.PORT || 3000, () => {
   let host = server.address().address;

@@ -40,12 +40,21 @@ function PlacesController($http){
     })
   }
 
-  function checkIn(place) {
+
+
+  function checkIn(place, req) {
     console.log('clicked check in button')
-    $http
-    .get('https://foursquare.com/oauth2/authenticate?client_id=' + self.client_id + '&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/')
-    .then(function(response){
-      console.log('clicked button')
+    // add headers, credentials for cross-origin request
+    $http({
+      url : 'https://foursquare.com/oauth2/authenticate?client_id=' + self.client_id + '&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/',
+      method: 'POST',
+      withCredentials: true,
+      headers: {
+        'Content-Type':'application/json; charset=utf-8'
+      }
     })
+
+
+
   }
 }
