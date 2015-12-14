@@ -22,7 +22,7 @@ function PlacesController($http){
   function getPlaces(){
     $http
       ////note: WILL HAVE TO CHANGE THIS TO MATCH HEROKU ROUTES
-      .get('http://localhost:3000/places')
+      .get('https://graffiti-hunt.herokuapp.com/places')
       .then(function(response) {
         self.all = response.data.places;
         self.client_id = response.data.client_id;
