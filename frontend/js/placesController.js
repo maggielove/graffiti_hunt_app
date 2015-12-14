@@ -36,7 +36,8 @@ function PlacesController($http){
     $http
     .get('https://api.foursquare.com/v2/venues/' + place.venueId + '?client_id=' + self.client_id + '&client_secret=' + self.client_secret + '&v=20151213')
     .then(function(response){
-      self.single = response.response.venue;
+      console.log(response);
+      self.single = response.data.response.venue;
     })
   }
 }

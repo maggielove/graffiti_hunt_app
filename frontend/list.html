@@ -1,7 +1,15 @@
 <div id="art-list">
-  <h2>street art locations</h2>
+  <h3>street art locations</h3>
   <ul id="venues-list">
-    <li ng-repeat="place in places.all"><a ng-click="places.viewPlace(place)" ng-href="#">{{place.name}} {{place.location.address}}</a>
+    <li ng-repeat="place in places.all"><a ng-click="places.viewPlace(place)" ng-href="#">{{place.name}}</a>
     </li>
   </ul>
+</div>
+
+<div id="place-view">
+  <p>powered by Foursquare</p>
+  <h3>{{places.single.name}}</h3>
+  <p>{{places.single.location.address}}</p>
+  <p>{{places.single.location.city}}</p>
+  <p>{{place.artInfo}}</p>
 </div>
