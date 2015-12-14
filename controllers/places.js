@@ -1,9 +1,9 @@
 'use strict';
 var Place = require('../models/place');
 var request = require('request');
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
-const push_secret = process.env.PUSH_SECRET;
+var client_id = process.env.CLIENT_ID;
+var client_secret = process.env.CLIENT_SECRET;
+var push_secret = process.env.PUSH_SECRET;
 
 //Get
 function findAll(request, response) {
