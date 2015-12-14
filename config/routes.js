@@ -6,7 +6,7 @@ let methodOverride = require('method-override');
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
 const push_secret = process.env.PUSH_SECRET;
-const code = 'foo' //req.query.code
+const code = ''; //req.query.code
 
 let usersController = require('../controllers/users');
 let placesController = require('../controllers/places');

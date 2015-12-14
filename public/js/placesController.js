@@ -1,7 +1,4 @@
 'use strict';
-// const client_id = process.env.CLIENT_ID;
-// const client_secret = process.env.CLIENT_SECRET;
-// const push_secret = process.env.PUSH_SECRET;
 
 angularApp
   .controller('PlacesController', PlacesController);
