@@ -1,22 +1,26 @@
 <!DOCTYPE html>
-<html ng-app="graffitiApp">
+<html ng-app='graffitiApp'>
   <head>
     <meta charset="utf-8">
     <title>graffiti hunter</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
-    <script src="js/app.js"></script>
-    <script src="js/test.js"></script>
-    <script src="js/placesController.js"></script>
-    <script src="js/usersController.js"></script>
+    <script src="./js/app.js"></script>
+    <script src="./js/test.js"></script>
+    <script src="./js/placesController.js"></script>
+    <script src="./js/usersController.js"></script>
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
     <h2> graffiti hunt app</h2>
     <nav>
-      <a ui-sref="index">Fake Index</a> |
-      <a ui-sref="test">Test</a>
+      <a ui-sref="index">Street Art Locations</a> |
+      <a ui-sref="test">Test Link</a>
     </nav>
+
+    <section ng-controller="PlacesController as places" ui-view>
+    </section>
 
     <section ng-controller="UsersController as users" ui-view>
     </section>
