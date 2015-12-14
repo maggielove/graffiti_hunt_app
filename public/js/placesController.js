@@ -19,7 +19,7 @@ function PlacesController($http){
   function getPlaces(){
     $http
       ////note: WILL HAVE TO CHANGE THIS TO MATCH HEROKU ROUTES
-      .get('https://graffiti-hunt.herokuapp.com/places')
+      .get('/places')
       .then(function(response) {
         self.all = response.data.places;
         self.client_id = response.data.client_id;
