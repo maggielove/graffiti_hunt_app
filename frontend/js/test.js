@@ -1,10 +1,6 @@
 'use strict';
 // let developmentConfig = require('../../api/config/development.config.js')
 
-const client_id = undefined; //process.env.CLIENT_ID;
-// const client_secret = 'bar' //process.env.CLIENT_SECRET;
-// const push_secret = 'foobar' //process.env.PUSH_SECRET;
-
 // $(function(){
 //
 //   $('#credentials-test').click(function(event){

@@ -16,6 +16,7 @@ function PlacesController($http){
   self.client_secret = '';
   self.getPlaces = getPlaces;
   self.viewPlace = viewPlace;
+  self.checkIn = checkIn;
 
   getPlaces();
   function getPlaces(){
@@ -26,6 +27,7 @@ function PlacesController($http){
         self.all = response.data.places;
         self.client_id = response.data.client_id;
         self.client_secret = response.data.client_secret;
+        // return "single=true"
         // self.client_id
         //self.client_secret
       })
@@ -38,6 +40,15 @@ function PlacesController($http){
     .then(function(response){
       console.log(response);
       self.single = response.data.response.venue;
+    })
+  }
+
+  function checkIn(place) {
+    console.log('clicked check in button')
+    $http
+    .get('https://foursquare.com/oauth2/authenticate?client_id=' + self.client_id + '&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/')
+    .then(function(response){
+      console.log('clicked button')
     })
   }
 }
