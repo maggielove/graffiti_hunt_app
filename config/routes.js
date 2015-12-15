@@ -44,7 +44,7 @@ router.use(function(req, res, next) {
 // put check in routes here
 
 // for url with code, exchange code for access token
-router.route('/?code=' + code)
+router.route('/?code=' + code + '#/index')
   .get(usersController.getAccessToken)
 
 // app.get('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code)
