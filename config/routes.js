@@ -33,7 +33,7 @@ router.use(function(req, res, next) {
     res.json({success: true, message: 'user accepted link to foursquare account'});
     // user can now hit routes below (= routes restricted to users who have linked to Foursquare)
     next();
-    usersController.getAccessToken;
+    usersController.getAccessToken();
   }
   else {
     return res.status(403).send({

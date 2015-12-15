@@ -35,9 +35,9 @@ function authenticate(req, res){
 // }
 
 function getAccessToken(req, res){
-  console.log(res)
-  res.redirect('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code)
-  res.send({ access_token: access_token })
+  console.log('in usersController getAccessToken function');
+  res.redirect('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code);
+  res.send({ access_token: access_token });
 }
 
 module.exports = {
