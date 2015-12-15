@@ -13,15 +13,18 @@
   </head>
   <body>
     <h1 id="site-title"> graffiti hunt app</h1>
+
+    <a ui-sref="login">Log In</a>
+
     <nav>
       <a ui-sref="index">Street Art Locations</a>
     </nav>
 
-    <section ng-controller="PlacesController as places" ui-view>
+    <section ng-controller="PlacesController as places" ui-view=''>
     </section>
 
-    <!-- <section ng-controller="UsersController as users" ui-view>
-    </section> -->
+    <section ng-controller="UsersController as users" ui-view='login@index'>
+    </section>
 
     <!-- <button id="credentials-test">sushi test</button> -->
 

@@ -1,3 +1,5 @@
+var UsersController = ('./usersController')
+var PlacesController = ('./placesController')
 var angularApp = angular.module('graffitiApp', ['ui.router'])
 
 angularApp.config(PlaceRouter);
@@ -8,11 +10,20 @@ function PlaceRouter($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise("/index");
 
   $stateProvider
-  .state('index', {
+  .state('index',
+    {
     // $stateProvider.defaults.useXDomain = true;
     // $urlRouterProvider.defaults.useXDomain = true;
     url: '/',
-    templateUrl: 'list.html'
+    views: {
+      '': {
+      templateUrl: 'list.html'
+    },
+    'login@index': {
+      url: '/',
+      templateUrl: 'login.html'
+    }
+   }
   })
   .state('test', {
     url: '/authtest',
