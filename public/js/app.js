@@ -3,7 +3,7 @@ var angularApp = angular.module('graffitiApp', ['ui.router'])
 angularApp.config(PlaceRouter);
 
 function PlaceRouter($stateProvider, $urlRouterProvider) {
-  // for cross-doman requests (requests to Foursquare/oauth)
+  // for cross-domain requests (requests to Foursquare/oauth)
 
   $urlRouterProvider.otherwise("/index");
 
