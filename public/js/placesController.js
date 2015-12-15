@@ -44,7 +44,6 @@ function PlacesController($http){
 
   function checkIn(place) {
     console.log('clicked check in button')
-    // add headers, credentials for cross-origin request
     $http({
       url : 'https://foursquare.com/oauth2/authenticate?client_id=' + self.client_id + '&response_type=token&redirect_uri=https://graffiti-hunt.herokuapp.com/',
       method: 'GET',
