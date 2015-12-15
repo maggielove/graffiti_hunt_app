@@ -7,10 +7,10 @@ UsersController.$inject = ['$http'];
 
 function UsersController($http){
   let self = this;
-  self.reroute = reroute;
+  // self.reroute = reroute;
 
-  function reroute(){
-    $http
-      .get('http://localhost:3000/authtest')
-  }
+  // function reroute(){
+  //   $http
+  //     .get('http://localhost:3000/authtest')
+  // }
 }
