@@ -1,5 +1,6 @@
 'use strict';
 let express = require('express');
+let app = express();
 let router = express.Router();
 let bodyParser = require('body-parser');
 let methodOverride = require('method-override');
@@ -13,9 +14,6 @@ let placesController = require('../controllers/places');
 
 router.route('/places')
   .get(placesController.findAll)
-
-router.route('/#/test')
-  .get(placesController.getTest);
 
 // router.route('/authtest')
 //   .get(usersController.redirect)
@@ -33,7 +31,6 @@ router.use(function(req, res, next) {
     res.json({success: true, message: 'user accepted link to foursquare account'});
     // user can now hit routes below (= routes restricted to users who have linked to Foursquare)
     next();
-    usersController.getAccessToken();
   }
   else {
     return res.status(403).send({
@@ -44,12 +41,17 @@ router.use(function(req, res, next) {
 })
 
 ///// ALL ROUTES BELOW THIS LINE SHOULD REQUIRE A CODE \\\\\
-// put check in stuff here
+// put check in routes here
+
+// for url with code, exchange code for access token
+router.route('/?code=' + code)
+  .get(usersController.getAccessToken)
+
+// app.get('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code)
 
 
 // send back code in line 33?
-// router.route('/cats')
-//   .get(usersController.getAccessToken)
+
 
 // router.route('https://graffiti-hunt.herokuapp.com/?code=' + code)
 

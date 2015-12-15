@@ -14,13 +14,6 @@ function findAll(request, response) {
   });
 };
 
-//test
-function getTest(request, response) {
-  console.log('hit /test');
-  console.log('process.env in the back-end: ' + process.env.CLIENT_ID);
-}
-
 module.exports = {
-  findAll: findAll,
-  getTest:getTest
+  findAll: findAll
 }
