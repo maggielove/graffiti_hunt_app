@@ -32,6 +32,14 @@ app.use(bodyParser.urlencoded({ extended:true }));
 app.use('/', express.static(__dirname + '/public'));
 app.use('/scripts', express.static(__dirname + '/node_modules'));
 app.use('/', routes)
+app.get('/getToken', function(req, res, body) {
+  request('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code, function(err, response, body) {
+    if(!err && response.statusCode == 200) {
+      console.log(body);
+      res.json(body);
+    }
+  })
+})
 
 let server = app.listen(process.env.PORT || 3000, () => {
   let host = server.address().address;
