@@ -16,6 +16,11 @@ let placesController = require('../controllers/places');
 
 router.route('/places')
   .get(placesController.findAll)
+  // add a place
+  .post(placesController.insertPlace)
+
+router.route('/places/:id')
+  .get(placesController.showPlace)
 
 // router.route('/authtest')
 //   .get(usersController.redirect)
@@ -53,9 +58,7 @@ router.use(function(req, res, next) {
 //   })
 // })
 
-///// ALL ROUTES BELOW THIS LINE SHOULD REQUIRE A CODE \\\\\
-router.route('/cats')
-  .get(usersController.getAccessToken)
+///// ALL ROUTES BELOW THIS LINE REQUIRE A CODE \\\\\
 
 // for url with code, exchange code for access token
 router.route('/?code=' + code + '#/index')

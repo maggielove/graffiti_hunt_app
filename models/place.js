@@ -3,6 +3,9 @@ let mongoose = require('mongoose');
 
 let placeSchema = new mongoose.Schema({
   name: String,
+  address: String,
+  city: String,
+  zipcode: Number, 
   venueId: String,
   artistBio: String,
   artInfo: String,

@@ -14,6 +14,27 @@ function findAll(request, response) {
   });
 };
 
+function showPlace(request, response) {
+  let id = request.params.id;
+  Place.find( { _id: id}, function(error, place) {
+    if (error) response.json({ message: 'Unable to find location.'});
+
+    response.json({ place: place })
+    console.log("place: " + place )
+  })
+}
+
+function insertPlace(request, response) {
+  let place = new Place(request.body);
+
+  place.save(function(error) {
+    if (error) response.json( { message: 'Unable to add place due to error: ' + error });
+    response.json({ place: place });
+  });
+}
+
 module.exports = {
-  findAll: findAll
+  findAll: findAll,
+  showPlace: showPlace,
+  insertPlace: insertPlace
 }

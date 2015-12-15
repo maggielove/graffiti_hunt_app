@@ -2,7 +2,7 @@
 <html ng-app='graffitiApp'>
   <head>
     <meta charset="utf-8">
-    <title>graffiti hunter</title>
+    <title>street art finder</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
     <script src="./js/app.js"></script>
@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-    <h1 id="site-title"> graffiti hunt app</h1>
+    <h1 id="site-title"> street art app</h1>
 
     <a ui-sref="login">Log In</a>
 
@@ -23,7 +23,7 @@
     <section ng-controller="PlacesController as places" ui-view=''>
     </section>
 
-    <section ng-controller="UsersController as users" ui-view='login@index'>
+    <section ng-controller="UsersController as users" ui-view='users'>
     </section>
 
     <!-- <button id="credentials-test">sushi test</button> -->

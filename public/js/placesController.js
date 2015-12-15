@@ -13,7 +13,9 @@ function PlacesController($http){
   self.client_secret = '';
   self.getPlaces = getPlaces;
   self.viewPlace = viewPlace;
-  self.checkIn = checkIn;
+  self.addPlace = addPlace;
+  self.newPlace = {};
+  // self.checkIn = checkIn;
 
   getPlaces();
   function getPlaces(){
@@ -33,21 +35,30 @@ function PlacesController($http){
   // let venueId = $('.listed-locations').id
   function viewPlace(place) {
     $http
-    .get('https://api.foursquare.com/v2/venues/' + place.venueId + '?client_id=' + self.client_id + '&client_secret=' + self.client_secret + '&v=20151213')
+    .get('/places/' + place._id)
+    // .get('https://api.foursquare.com/v2/venues/' + place.venueId + '?client_id=' + self.client_id + '&client_secret=' + self.client_secret + '&v=20151213')
     .then(function(response){
       console.log(response);
-      self.single = response.data.response.venue;
+      self.single = response.data.place[0];
+      // self.single = response.data.response.venue;
     })
+  };
+
+  function addPlace() {
+    console.log('adding new place');
+    $http
+    .post('/places', self.newPlace)
+    .then(function(response){
+      getPlaces();
+    });
   }
 
-
-
-  function checkIn(place) {
-    console.log('clicked check in button')
-    $http({
-      url : 'https://foursquare.com/oauth2/authenticate?client_id=' + self.client_id + '&response_type=token&redirect_uri=https://graffiti-hunt.herokuapp.com/',
-      method: 'GET',
-      withCredentials: true
-    })
-  }
+  // function checkIn(place) {
+  //   console.log('clicked check in button')
+  //   $http({
+  //     url : 'https://foursquare.com/oauth2/authenticate?client_id=' + self.client_id + '&response_type=token&redirect_uri=https://graffiti-hunt.herokuapp.com/',
+  //     method: 'GET',
+  //     withCredentials: true
+  //   })
+  // }
 }
