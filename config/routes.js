@@ -30,12 +30,8 @@ router.use(function(req, res, next) {
   let code = req.query.code;
   console.log('code: ' + code);
   if (code) {
-    request('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code, function(err, response, body) {
-      if(!err && response.statusCode == 200) {
-        console.log(body);
-        res.json(body);
-      }
-    });
+    usersController.getAccessToken();
+
     //res.json({success: true, message: 'user accepted link to foursquare account'});
     // user can now hit routes below (= routes restricted to users who have linked to Foursquare)
     next();
@@ -47,6 +43,15 @@ router.use(function(req, res, next) {
     })
   }
 })
+
+// router.route('/getToken', function(req, res, body) {
+//   request('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code, function(err, response, body) {
+//     if(!err && response.statusCode == 200) {
+//       console.log(body);
+//       res.json(body);
+//     }
+//   })
+// })
 
 ///// ALL ROUTES BELOW THIS LINE SHOULD REQUIRE A CODE \\\\\
 router.route('/cats')
