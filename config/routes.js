@@ -8,6 +8,7 @@ const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
 const push_secret = process.env.PUSH_SECRET;
 var code = ''; //req.query.code
+var accessToken = '';
 
 let usersController = require('../controllers/users');
 let placesController = require('../controllers/places');
@@ -41,17 +42,17 @@ router.use(function(req, res, next) {
 })
 
 ///// ALL ROUTES BELOW THIS LINE SHOULD REQUIRE A CODE \\\\\
-// put check in routes here
 
 // for url with code, exchange code for access token
 router.route('/?code=' + code + '#/index')
   .get(usersController.getAccessToken)
 
+// Check in:
+router.route('https://api.foursquare.com/v2/users/self/checkins?oauth_token=' + accessToken)
+
 // app.get('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code)
 
-
 // send back code in line 33?
-
 
 // router.route('https://graffiti-hunt.herokuapp.com/?code=' + code)
 
