@@ -1,6 +1,7 @@
 'use strict';
 
 
+console.log('PlacesController.all: ' + PlacesController.all)
 
 angularApp
   .controller('PlacesController', PlacesController);
@@ -17,6 +18,7 @@ function PlacesController($http){
   self.viewPlace = viewPlace;
   self.addPlace = addPlace;
   self.newPlace = { loc: [0, 0] };
+  self.initialize = initialize;
   self.lat = lat;
   self.lng = lng;
   // self.checkIn = checkIn;
@@ -44,11 +46,12 @@ function PlacesController($http){
       .get('/places')
       .then(function(response) {
         self.all = response.data.places;
+        console.log('self.all inside getPlaces():' + self.all);
         self.client_id = response.data.client_id;
         self.client_secret = response.data.client_secret;
+        // do not run google maps initialize() until places have loaded.
+        initialize();
         // return "single=true"
-        // self.client_id
-        //self.client_secret
       })
   }
 
@@ -60,6 +63,7 @@ function PlacesController($http){
     .then(function(response){
       console.log(response);
       self.single = response.data.place[0];
+      // Foursquare API info:
       // self.single = response.data.response.venue;
     })
   };
@@ -77,6 +81,8 @@ function PlacesController($http){
     });
   }
 
+  console.log('self.all outside Google Map fn: ', self.all);
+
   ///GOOGLE MAP & MARKER JS START ///
   function initialize() {
 
@@ -89,24 +95,27 @@ function PlacesController($http){
     var map=new google.maps.Map(document.getElementById("map-canvas"), mapProp);
 
     // var markers = [
-      // ['GA', 40.7401398, -73.9896869]
+    //   ['GA', 40.7401398, -73.9896869]
     // ]
     // set markers for every street art location in the app's db
     var markers = [];
-    // var name;
-    // var lat;
-    // var lng;
+    console.log('self.all inside gmap fn: ', self.all);
+    var name;
+    var lat;
+    var lng;
     // loop through the locations and add information from each to the markers array.
     for(i = 0; i < self.all.length; i++) {
+      console.log('i: ', i);
+      var singleMarker = [];
       // var singleMarker = ['GA', 40.7401398, -73.9896869];
-      name = i.name
-      lat = i.loc[0]
-      lng = i.loc[1]
+      name = self.all[i].name;
+      lat = self.all[i].loc[0];
+      lng = self.all[i].loc[1];
       singleMarker.push(name, lat, lng);
     //   console.log(singleMarker);
       markers.push(singleMarker);
     }
-    // console.log('markers: ' + markers)
+    console.log('markers: ' + markers)
 
     // show multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i
@@ -127,7 +136,6 @@ function PlacesController($http){
     }
   }
 
-  google.maps.event.addDomListener(window, 'load', initialize);
   ///GOOGLE MAP & MARKER JS END ///
 
   // Foursquare
