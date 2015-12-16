@@ -22,11 +22,11 @@
       <a ui-sref="index">Street Art Locations</a>
     </nav>
 
-    <section ng-controller="PlacesController as places" ui-view=''>
+    <section id="places-section" ng-controller="PlacesController as places" ui-view>
     </section>
 
-    <section ng-controller="UsersController as users" ui-view='users'>
-    </section>
+    <!-- <section ng-controller="UsersController as users" ui-view='users'>
+    </section> -->
 
     <!-- where our JS for the Google Map will display the map -->
     <div id="google-map">

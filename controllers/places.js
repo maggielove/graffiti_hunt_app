@@ -42,8 +42,25 @@ function insertPlace(request, response) {
   });
 }
 
+function updatePlace(request, response) {
+  let id = request.params.id;
+  Place.findById({_id: id}, function(error, place){
+    if(error) response.json({message: 'Error finding location: ' + error});
+    if (request.body.name) place.name = request.body.name;
+    if (request.body.address) place.address = request.body.address;
+    if (request.body.city) place.city = request.body.city;
+    if (request.body.zipcode) place.zipcode = request.body.zipcode;
+    if (request.body.artInfo) place.artInfo = request.body.artInfo;
+    place.save(function(error) {
+      if (error) response.json({ message: 'Error saving location: ' + error });
+      response.json({ message: 'Place updated', place: place});
+    });
+  });
+};
+
 module.exports = {
   findAll: findAll,
   showPlace: showPlace,
-  insertPlace: insertPlace
+  insertPlace: insertPlace,
+  updatePlace: updatePlace
 }

@@ -12,12 +12,14 @@ function PlacesController($http){
   let self = this;
   self.all = [];
   self.single = {};
+  self.editedPlace = {};
   self.client_id = '';
   self.client_secret = '';
   self.getPlaces = getPlaces;
   self.viewPlace = viewPlace;
   self.addPlace = addPlace;
   self.newPlace = { loc: [0, 0] };
+  self.editPlace = editPlace;
   self.initialize = initialize;
   self.lat = lat;
   self.lng = lng;
@@ -79,6 +81,14 @@ function PlacesController($http){
     .then(function(response){
       getPlaces();
     });
+  }
+
+  function editPlace(place){
+    $http
+    .put('/places/' + self.single._id, self.single)
+    .then(function(response) {
+      getPlaces();
+    })
   }
 
   console.log('self.all outside Google Map fn: ', self.all);

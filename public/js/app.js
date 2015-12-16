@@ -25,8 +25,17 @@ function PlaceRouter($stateProvider, $urlRouterProvider) {
     }
    }
   })
-  .state('test', {
-    url: '/authtest',
-    templateUrl: 'test.html'
+  .state('form', {
+    url: '/form',
+    templateUrl: 'form.html'
+  })
+  //states nested in form
+  .state('form.new', {
+    url: '/new',
+    templateUrl: 'form-new.html'
+  })
+  .state('form.edit', {
+    url: '/edit',
+    templateUrl: 'form-edit.html'
   })
 }

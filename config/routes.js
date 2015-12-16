@@ -21,6 +21,7 @@ router.route('/places')
 
 router.route('/places/:id')
   .get(placesController.showPlace)
+  .put(placesController.updatePlace)
 
 // router.route('/authtest')
 //   .get(usersController.redirect)
@@ -28,26 +29,26 @@ router.route('/places/:id')
 
 // router.route('https://foursquare.com/oauth2/authenticate?client_id=' + client_id + '&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/')
 
-router.route('/users/authenticate')
-  .post(usersController.authenticate)
-
-router.use(function(req, res, next) {
-  let code = req.query.code;
-  console.log('code: ' + code);
-  if (code) {
-    usersController.getAccessToken();
-    request('/getAccessToken');
-    //res.json({success: true, message: 'user accepted link to foursquare account'});
-    // user can now hit routes below (= routes restricted to users who have linked to Foursquare)
-    next();
-  }
-  else {
-    return res.status(403).send({
-      success: false,
-      message: 'No code provided.'
-    })
-  }
-})
+// router.route('/users/authenticate')
+//   .post(usersController.authenticate)
+//
+// router.use(function(req, res, next) {
+//   let code = req.query.code;
+//   console.log('code: ' + code);
+//   if (code) {
+//     usersController.getAccessToken();
+//     request('/getAccessToken');
+//     //res.json({success: true, message: 'user accepted link to foursquare account'});
+//     // user can now hit routes below (= routes restricted to users who have linked to Foursquare)
+//     next();
+//   }
+//   else {
+//     return res.status(403).send({
+//       success: false,
+//       message: 'No code provided.'
+//     })
+//   }
+// })
 
 // router.route('/getToken', function(req, res, body) {
 //   request('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code, function(err, response, body) {
