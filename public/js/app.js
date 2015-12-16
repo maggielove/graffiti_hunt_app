@@ -7,7 +7,7 @@ angularApp.config(PlaceRouter);
 function PlaceRouter($stateProvider, $urlRouterProvider) {
   // for cross-domain requests (requests to Foursquare/oauth)
 
-  $urlRouterProvider.otherwise("/index");
+  $urlRouterProvider.otherwise("/");
 
   $stateProvider
   .state('index', {
@@ -24,5 +24,5 @@ function PlaceRouter($stateProvider, $urlRouterProvider) {
       url: '/places',
       templateUrl: 'new.html'
     })
-    
+
 }
