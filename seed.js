@@ -46,6 +46,8 @@ lilskips.save(function(err) {
 ///PLACES
 let names = [ "The Bushwick Collective", "ODB Mural", "Bowery Mural", "Big Fish Mural", "Lorca Mural"]
 
+let locations = [ [40.70732570533678, -73.9226090549172], [40.683250017495986, -73.95631692526705], [40.72429917430525, -73.99279117584229], [40.69752676665401, -73.92908334732056], [40.701496138477786, -73.9226245880127] ]
+
 let venueIds = ['4fca53c5e4b01dfc7f381f4d', '4bca074eb6c49c74ce8e8f91', '4ef1925177166617fd378b8e', '566e2a5c498ed26e2ffa13b4', '566e24b1498ef6790e8ed863' ]
 
 let artGraphs = [
@@ -58,6 +60,7 @@ let artGraphs = [
 
 let bushwickCollective = new Place({
   name: names[0],
+  loc: locations[0],
   venueId: venueIds[0],
   artInfo: artGraphs[0]
 })
@@ -72,6 +75,7 @@ bushwickCollective.save(function(err) {
 
 let odbMural = new Place({
   name: names[1],
+  loc: locations[1],
   venueId: venueIds[1],
   artInfo: artGraphs[1]
 })
@@ -86,6 +90,7 @@ odbMural.save(function(err) {
 
 let boweryMural = new Place({
   name: names[2],
+  loc: locations[2],
   venueId: venueIds[2],
   artInfo: artGraphs[2]
 })
@@ -100,6 +105,7 @@ boweryMural.save(function(err) {
 
 let bigFishMural = new Place({
   name: names[3],
+  loc: locations[3],
   venueId: venueIds[3],
   artInfo: artGraphs[3]
 })
@@ -114,6 +120,7 @@ bigFishMural.save(function(err) {
 
 let lorcaMural = new Place({
   name: names[4],
+  loc: locations[4],
   venueId: venueIds[4],
   artInfo: artGraphs[4]
 })
