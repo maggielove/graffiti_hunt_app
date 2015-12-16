@@ -1,5 +1,24 @@
 'use strict';
 
+function initialize() {
+var myLatLng = {lat: 40.7401398, lng: -73.9896869};
+
+var mapProp = {
+  center:new google.maps.LatLng(40.7401398, -73.9896869),
+  zoom:12,
+  mapTypeId:google.maps.MapTypeId.ROADMAP
+};
+var map=new google.maps.Map(document.getElementById("map-canvas"), mapProp);
+
+var marker = new google.maps.Marker({
+  position: myLatLng,
+  map: map,
+  title: 'Hello World!'
+});
+}
+
+google.maps.event.addDomListener(window, 'load', initialize);
+
 angularApp
   .controller('PlacesController', PlacesController);
 
@@ -23,17 +42,26 @@ function PlacesController($http){
   var lng = 0;
   function getLocation() {
       if (navigator.geolocation) {
-          navigator.geolocation.watchPosition(showPosition);
+          navigator.geolocation.watchPosition(getPosition);
       } else {
-          x.innerHTML = "Geolocation is not supported by this browser.";
+          console.log("Geolocation is not supported by this browser.");
       }
   }
-  function showPosition(position) {
+  function getPosition(position) {
       lat = position.coords.latitude;
       lng = position.coords.longitude;
-      x.innerHTML = lat + ',' + lng;
   }
   getLocation();
+
+  // function addMarker() {
+  //   var map = document.getElementById('googleMap')
+  //   var myLatLng = { lat: lat, lng: lng }
+  //   var marker = new google.maps.Marker({
+  //     position: myLatLng,
+  //     map: map,
+  //     title: 'Hello World!'
+  //   });
+  // }
 
   getPlaces();
   function getPlaces(){
@@ -63,6 +91,7 @@ function PlacesController($http){
   };
 
   function addPlace() {
+    // addMarker();
     console.log('lat: ' + lat + 'long: ' + lng);
     console.log('adding new place');
     self.newPlace.loc[0] = lat;

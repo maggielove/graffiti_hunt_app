@@ -27,33 +27,11 @@
     <section ng-controller="UsersController as users" ui-view='users'>
     </section>
 
-    <script>
-    var x = document.createElement('div');
-    document.body.appendChild(x);
-
-
-
-        function initialize() {
-        var mapProp = {
-          center:new google.maps.LatLng(40.7401398, -73.9896869),
-          zoom:12,
-          mapTypeId:google.maps.MapTypeId.ROADMAP
-        };
-        var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
-        }
-        google.maps.event.addDomListener(window, 'load', initialize);
-    </script>
-
-    <script>
-
-  </script>
-
-    <body>
-    <div id="googleMap" style="width:500px;height:380px;"></div>
-
-    </body>
-
-    <!-- <button id="credentials-test">sushi test</button> -->
+    <!-- where our JS for the Google Map will display the map -->
+    <div id="google-map">
+      <div id="map-canvas" class="mapping">
+      </div>
+    </div>
 
   </body>
 </html>
