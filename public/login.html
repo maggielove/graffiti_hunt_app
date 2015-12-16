@@ -1,6 +1,15 @@
-<!-- <form id="login-form" ng-submit="users.loginUser()">
+<form id="login-form" ng-submit="users.loginUser()">
   <h3>Log In</h3>
-  <strong>Username: </strong><input id="username-input"><br>
-  <strong>Password: </strong><input id="password-input"><br>
+  <p>hi {{ users.verified.username }}!</p>
+  <strong>Username: </strong><input ng-model="users.single.username" id="username-input"/><br>
+  <strong>Password: </strong><input ng-model="users.single.password" id="password-input"/><br>
   <button type="submit" id="submit-login">Submit</button>
-</form> -->
+</form>
+
+
+
+<!-- <script>
+  $('#submit-login').click(function () {
+    console.log('clicked submit login')
+  })
+</script> -->

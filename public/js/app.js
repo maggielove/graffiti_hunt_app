@@ -15,14 +15,34 @@ function PlaceRouter($stateProvider, $urlRouterProvider) {
     // $urlRouterProvider.defaults.useXDomain = true;
     url: '/',
     views: {
-      '': {
+      'places': {
       templateUrl: 'list.html'
       }
     }
   })
   .state('new', {
       url: '/places',
-      templateUrl: 'new.html'
+      views: {
+        'places' : {
+          templateUrl: 'new.html'
+        }
+      }
     })
+  .state('login', {
+    url: '/users/authenticate',
+    views: {
+      'users' : {
+        templateUrl: 'login.html'
+      }
+    }
+  })
+  .state('edit', {
+    url: '/places/:id',
+    views: {
+      'places' : {
+        templateUrl: 'edit.html'
+      }
+    }
+  })
 
 }

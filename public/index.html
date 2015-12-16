@@ -19,15 +19,16 @@
     <!-- <a ui-sref="login">Log In</a> -->
 
     <nav>
-      <a ui-sref="index">Street Art Locations</a> |
-      <a ui-sref="new" ng-click="">add location</a>
+      <a ui-sref="index">street art locations</a> |
+      <a ui-sref="new" ng-click="">add location</a> |
+      <a ui-sref="login" ng-click="">log in</a>
     </nav>
 
-    <section id="places-section" ng-controller="PlacesController as places" ui-view>
+    <section id="places-section" ng-controller="PlacesController as places" ui-view='places'>
     </section>
 
-    <!-- <section ng-controller="UsersController as users" ui-view='users'>
-    </section> -->
+    <section ng-controller="UsersController as users" ui-view='users'>
+    </section>
 
     <!-- where our JS for the Google Map will display the map -->
     <div id="google-map">

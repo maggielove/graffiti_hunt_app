@@ -11,17 +11,18 @@ const push_secret = process.env.PUSH_SECRET;
 
 //Authenticate
 function authenticate(req, res){
+  console.log('req.body.username: ' + req.body.username)
   User.findOne({
-    username: req.body.user.username
+    username: req.body.username
   }, function(err, user) {
     if (err) throw err;
     if (user == undefined) {
       res.send({ success: false, message: 'Authentication failed. User not found.'});
     } else {
-      user.authenticate(req.body.user.password, function(err, isMatch) {
+      user.authenticate(req.body.password, function(err, isMatch) {
         if (err) throw err;
         if (isMatch) {
-          return res.send({ message: 'Authentication successful! Token: ', token: jwt.sign(user, secret)})
+          return res.send({ message: 'Authentication successful! Token: ', token: jwt.sign(user, secret), user: user})
         } else {
           return res.send({ message: 'Password not a match. Unable to provide token.'});
         }

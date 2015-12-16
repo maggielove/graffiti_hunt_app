@@ -29,8 +29,8 @@ router.route('/places/:id')
 
 // router.route('https://foursquare.com/oauth2/authenticate?client_id=' + client_id + '&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/')
 
-// router.route('/users/authenticate')
-//   .post(usersController.authenticate)
+router.route('/users/authenticate')
+  .post(usersController.authenticate)
 //
 // router.use(function(req, res, next) {
 //   let code = req.query.code;

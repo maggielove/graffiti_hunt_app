@@ -13,7 +13,7 @@
   <p>{{places.single.zipcode}}</p>
   <p>{{places.single.artInfo}}</p>
   <p>{{places.single.areaInfo}}</p>
-  <a href="#" ng-click="editform=true">edit</a>
+  <a ui-sref="edit" ng-click="editform=true">edit</a>
 
   <!-- <p>powered by Foursquare</p> -->
   <!-- <h3>{{places.single.name}}</h3>
@@ -21,36 +21,3 @@
   <p>{{places.single.location.city}}</p> -->
   <!-- <a href='https://foursquare.com/oauth2/authenticate?client_id={{places.client_id}}&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/'>check in!</a> -->
 </div>
-
-<form id="edit-form" ng-submit="places.editPlace(place)">
-  <!-- ng-submit="places.addPlace()" -->
-  <div>
-    <label for="name">Name</label>
-    <input ng-model="places.single.name" type="text" placeholder="Frida Kahlo Mural"/>
-  </div>
-  <div>
-    <label for="address">Address</label>
-    <input ng-model="places.single.address" type="text" placeholder="385 Knickerbocker Ave."/>
-  </div>
-  <div>
-    <label for="city">City</label>
-    <input ng-model="places.single.city" type="text" placeholder="Brooklyn"/>
-  </div>
-  <div>
-    <label for="zipcode">Zipcode</label>
-    <input ng-model="places.single.zipcode" type="text" placeholder="11237"/>
-  </div>
-  <div>
-    <label for="artInfo">About the Art</label>
-    <textarea ng-model="places.single.artInfo" type="text" placeholder="Put any interesting facts about the art, like when it was added, the inspiration of the piece, etc."/>
-  </div>
-  <div>
-    <label for="artistBio">About the Artist</label>
-    <textarea ng-model="places.single.artistBio" type="text" placeholder="Add any info about the artist, including ongoing projects."/>
-  </div>
-   <div>
-    <label for="areaInfo">About the Area</label>
-    <textarea ng-model="places.single.areaInfo" type="text" placeholder="Is the art commentary on the surrounding area? If so, maybe talk about the area here."/>
-  </div>
-  <button type="submit" class="submit-form">Submit</button>
-</form>
