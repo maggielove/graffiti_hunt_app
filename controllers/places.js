@@ -1,9 +1,14 @@
 'use strict';
 var Place = require('../models/place');
 var request = require('request');
+// google
+var key = process.env.GMAPS_KEY;
+// foursquare
 var client_id = process.env.CLIENT_ID;
 var client_secret = process.env.CLIENT_SECRET;
 var push_secret = process.env.PUSH_SECRET;
+//get the user's current location
+
 
 //Get
 function findAll(request, response) {
@@ -24,8 +29,12 @@ function showPlace(request, response) {
   })
 }
 
+
 function insertPlace(request, response) {
+  console.log('request.body: ' + request.body)
   let place = new Place(request.body);
+  // place.loc.push(lat);
+  // place.loc.push(lng);
 
   place.save(function(error) {
     if (error) response.json( { message: 'Unable to add place due to error: ' + error });

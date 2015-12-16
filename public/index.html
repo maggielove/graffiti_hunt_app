@@ -5,6 +5,7 @@
     <title>street art finder</title>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
+    <script src="http://maps.googleapis.com/maps/api/js"></script>
     <script src="./js/app.js"></script>
     <script src="./js/test.js"></script>
     <script src="./js/placesController.js"></script>
@@ -14,7 +15,7 @@
   <body>
     <h1 id="site-title"> street art app</h1>
 
-    <a ui-sref="login">Log In</a>
+    <!-- <a ui-sref="login">Log In</a> -->
 
     <nav>
       <a ui-sref="index">Street Art Locations</a>
@@ -25,6 +26,32 @@
 
     <section ng-controller="UsersController as users" ui-view='users'>
     </section>
+
+    <script>
+    var x = document.createElement('div');
+    document.body.appendChild(x);
+
+
+
+        function initialize() {
+        var mapProp = {
+          center:new google.maps.LatLng(40.7401398, -73.9896869),
+          zoom:12,
+          mapTypeId:google.maps.MapTypeId.ROADMAP
+        };
+        var map=new google.maps.Map(document.getElementById("googleMap"), mapProp);
+        }
+        google.maps.event.addDomListener(window, 'load', initialize);
+    </script>
+
+    <script>
+
+  </script>
+
+    <body>
+    <div id="googleMap" style="width:500px;height:380px;"></div>
+
+    </body>
 
     <!-- <button id="credentials-test">sushi test</button> -->
 

@@ -14,8 +14,26 @@ function PlacesController($http){
   self.getPlaces = getPlaces;
   self.viewPlace = viewPlace;
   self.addPlace = addPlace;
-  self.newPlace = {};
+  self.newPlace = { loc: [0, 0] };
+  self.lat = lat;
+  self.lng = lng;
   // self.checkIn = checkIn;
+
+  var lat = 0;
+  var lng = 0;
+  function getLocation() {
+      if (navigator.geolocation) {
+          navigator.geolocation.watchPosition(showPosition);
+      } else {
+          x.innerHTML = "Geolocation is not supported by this browser.";
+      }
+  }
+  function showPosition(position) {
+      lat = position.coords.latitude;
+      lng = position.coords.longitude;
+      x.innerHTML = lat + ',' + lng;
+  }
+  getLocation();
 
   getPlaces();
   function getPlaces(){
@@ -45,7 +63,10 @@ function PlacesController($http){
   };
 
   function addPlace() {
+    console.log('lat: ' + lat + 'long: ' + lng);
     console.log('adding new place');
+    self.newPlace.loc[0] = lat;
+    self.newPlace.loc[1] = lng;
     $http
     .post('/places', self.newPlace)
     .then(function(response){

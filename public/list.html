@@ -1,7 +1,7 @@
 <div id="art-list">
   <h3>street art locations</h3>
   <ul id="venues-list">
-    <li ng-repeat="place in places.all"><input type="checkbox"><a ng-click="places.viewPlace(place)" ng-href="#">{{place.name}}</a>
+    <li ng-repeat="place in places.all"><input type="checkbox"><a ng-click="places.viewPlace(place); single=true" ng-href="#">{{place.name}}</a>
     </li>
   </ul>
 </div>
@@ -14,6 +14,8 @@
   <p>{{places.single.artInfo}}</p>
   <p>{{places.single.areaInfo}}</p>
   <a href="#" ng-click="newform=true">add an art spot</a>
+  <a href="#">edit</a>
+
   <!-- <p>powered by Foursquare</p> -->
   <!-- <h3>{{places.single.name}}</h3>
   <p>{{places.single.location.address}}</p>
@@ -21,7 +23,8 @@
   <!-- <a href='https://foursquare.com/oauth2/authenticate?client_id={{places.client_id}}&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/'>check in!</a> -->
 </div>
 
-<form class="new-form" ng-submit="places.addPlace()">
+<form class="new-form" ng-show="newform" ng-submit="places.addPlace()">
+  <!-- ng-submit="places.addPlace()" -->
   <div>
     <label for="name">Name</label>
     <input ng-model="places.newPlace.name" type="text" placeholder="Frida Kahlo Mural">

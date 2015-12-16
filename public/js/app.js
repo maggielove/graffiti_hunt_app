@@ -1,5 +1,5 @@
-var UsersController = ('./usersController')
-var PlacesController = ('./placesController')
+// var UsersController = ('./usersController')
+// var PlacesController = ('./placesController')
 var angularApp = angular.module('graffitiApp', ['ui.router'])
 
 angularApp.config(PlaceRouter);
