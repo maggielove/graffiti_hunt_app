@@ -1,8 +1,4 @@
 'use strict';
-
-
-console.log('PlacesController.all: ' + PlacesController.all)
-
 angularApp
   .controller('PlacesController', PlacesController);
 
@@ -104,28 +100,41 @@ function PlacesController($http){
     };
     var map=new google.maps.Map(document.getElementById("map-canvas"), mapProp);
 
-    // var markers = [
-    //   ['GA', 40.7401398, -73.9896869]
-    // ]
     // set markers for every street art location in the app's db
     var markers = [];
-    console.log('self.all inside gmap fn: ', self.all);
+    // console.log('self.all inside gmap fn: ', self.all);
     var name;
     var lat;
     var lng;
-    // loop through the locations and add information from each to the markers array.
+    // loop through the places in db and add information from each to the markers array.
     for(i = 0; i < self.all.length; i++) {
-      console.log('i: ', i);
+      // console.log('i: ', i);
       var singleMarker = [];
-      // var singleMarker = ['GA', 40.7401398, -73.9896869];
       name = self.all[i].name;
       lat = self.all[i].loc[0];
       lng = self.all[i].loc[1];
+      // push the info for a single marker into an individual array
       singleMarker.push(name, lat, lng);
-    //   console.log(singleMarker);
       markers.push(singleMarker);
     }
     console.log('markers: ' + markers)
+
+    //set content for the info window of each marker
+    var infoWindowContent = [];
+    var name;
+    // var address;
+    // loop through all places in db and add its name, address to an info window
+    for (i = 0; i < self.all.length; i++){
+      var singleInfoWindow = [];
+      name = '<div><h3>' + self.all[i].name + '</h3></div>';
+      // if (self.all[i].address == !undefined)  {
+      //   address = '<div><p>' + self.all[i].address  + '</div></p>';
+      // };
+      singleInfoWindow.push(name);
+      // singleInfoWindow.push(name + address);
+      infoWindowContent.push(singleInfoWindow);
+    }
+    console.log('infoWindow array: ' + infoWindowContent)
 
     // show multiple markers on a map
     var infoWindow = new google.maps.InfoWindow(), marker, i
@@ -140,7 +149,13 @@ function PlacesController($http){
         title: markers[i][0]
       })
 
-      // add event listener for info windows
+      // On click, each marker will display its info window
+      google.maps.event.addListener(marker, 'click', (function(marker, i) {
+        return function() {
+          infoWindow.setContent(infoWindowContent[i][0]);
+          infoWindow.open(map, marker);
+        }
+      })(marker, i));
 
       // map.fitBounds(bounds)
     }
