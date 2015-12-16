@@ -16,12 +16,14 @@ function UsersController($http){
     $http
     .post('/users/authenticate', self.single)
     .then(function(response){
+      console.log('user before token save: ' + response.data.user)
       self.verified = response.data.user;
       if (response.data.user) {
-        console.log(response.data.user);
-        "guest" === false;
+        console.log('response.data.user.username: ' + response.data.user.username );
+        // !"guest";
       }
       console.log(response)
+      console.log('user after token save: ' + response.data.user.username)
     })
   }
 

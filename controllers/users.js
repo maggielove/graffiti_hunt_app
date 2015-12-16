@@ -8,6 +8,7 @@ let mongoose = require('mongoose');
 const client_id = process.env.CLIENT_ID;
 const client_secret = process.env.CLIENT_SECRET;
 const push_secret = process.env.PUSH_SECRET;
+var token;
 
 //Authenticate
 function authenticate(req, res){
@@ -22,7 +23,13 @@ function authenticate(req, res){
       user.authenticate(req.body.password, function(err, isMatch) {
         if (err) throw err;
         if (isMatch) {
-          return res.send({ message: 'Authentication successful! Token: ', token: jwt.sign(user, secret), user: user})
+          token = jwt.sign(user, secret);
+          // save the token to the user
+          user.token = token;
+          return res.send({ message: 'Authentication successful! Token: ', token, user: user})
+          // return res.send({ message: 'Authentication successful! Token: ', token: jwt.sign(user, secret), user: user})
+
+          console.log('user.token: ' + user.token)
         } else {
           return res.send({ message: 'Password not a match. Unable to provide token.'});
         }
@@ -35,6 +42,7 @@ function authenticate(req, res){
 //   res.redirect('https://foursquare.com/oauth2/authenticate?client_id=' + client_id + '&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/')
 // }
 
+// access token from Foursquare/ OAuth2
 function getAccessToken(req, res){
   console.log('in usersController getAccessToken function');
   // request('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code, function(err, response, body) {

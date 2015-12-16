@@ -8,6 +8,7 @@ let SALT_WORK_FACTOR = 10;
 let userSchema = new mongoose.Schema({
   username: String,
   password: String,
+  token: String,
   created_at: Date,
   places: [
     {
