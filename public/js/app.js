@@ -10,32 +10,19 @@ function PlaceRouter($stateProvider, $urlRouterProvider) {
   $urlRouterProvider.otherwise("/index");
 
   $stateProvider
-  .state('index',
-    {
+  .state('index', {
     // $stateProvider.defaults.useXDomain = true;
     // $urlRouterProvider.defaults.useXDomain = true;
     url: '/',
     views: {
       '': {
       templateUrl: 'list.html'
-    },
-    'login@index': {
-      url: '/',
-      templateUrl: 'login.html'
+      }
     }
-   }
   })
-  .state('form', {
-    url: '/form',
-    templateUrl: 'form.html'
-  })
-  //states nested in form
-  .state('form.new', {
-    url: '/new',
-    templateUrl: 'form-new.html'
-  })
-  .state('form.edit', {
-    url: '/edit',
-    templateUrl: 'form-edit.html'
-  })
+  .state('new', {
+      url: '/places',
+      templateUrl: 'new.html'
+    })
+    
 }

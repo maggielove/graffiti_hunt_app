@@ -1,5 +1,7 @@
 body {
   font-family: sans-serif;
+  /*overflow: hidden;
+  position: absolute;*/
 }
 
 ul{
@@ -22,7 +24,6 @@ label {
 
 #google-map {
   height: 400px;
-  margin-left: 35%;
   /*margin-top: -25%;*/
 }
 
