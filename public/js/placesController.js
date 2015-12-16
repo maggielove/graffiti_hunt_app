@@ -1,23 +1,6 @@
 'use strict';
 
-function initialize() {
-var myLatLng = {lat: 40.7401398, lng: -73.9896869};
 
-var mapProp = {
-  center:new google.maps.LatLng(40.7401398, -73.9896869),
-  zoom:12,
-  mapTypeId:google.maps.MapTypeId.ROADMAP
-};
-var map=new google.maps.Map(document.getElementById("map-canvas"), mapProp);
-
-var marker = new google.maps.Marker({
-  position: myLatLng,
-  map: map,
-  title: 'Hello World!'
-});
-}
-
-google.maps.event.addDomListener(window, 'load', initialize);
 
 angularApp
   .controller('PlacesController', PlacesController);
@@ -38,6 +21,7 @@ function PlacesController($http){
   self.lng = lng;
   // self.checkIn = checkIn;
 
+  // get the user's location when they add a new street art location to the map.
   var lat = 0;
   var lng = 0;
   function getLocation() {
@@ -52,16 +36,6 @@ function PlacesController($http){
       lng = position.coords.longitude;
   }
   getLocation();
-
-  // function addMarker() {
-  //   var map = document.getElementById('googleMap')
-  //   var myLatLng = { lat: lat, lng: lng }
-  //   var marker = new google.maps.Marker({
-  //     position: myLatLng,
-  //     map: map,
-  //     title: 'Hello World!'
-  //   });
-  // }
 
   getPlaces();
   function getPlaces(){
@@ -103,6 +77,60 @@ function PlacesController($http){
     });
   }
 
+  ///GOOGLE MAP & MARKER JS START ///
+  function initialize() {
+
+    var mapProp = {
+      // change center to bounds
+      center:new google.maps.LatLng(40.7401398, -73.9896869),
+      zoom:12,
+      mapTypeId:google.maps.MapTypeId.ROADMAP
+    };
+    var map=new google.maps.Map(document.getElementById("map-canvas"), mapProp);
+
+    // var markers = [
+      // ['GA', 40.7401398, -73.9896869]
+    // ]
+    // set markers for every street art location in the app's db
+    var markers = [];
+    // var name;
+    // var lat;
+    // var lng;
+    // loop through the locations and add information from each to the markers array.
+    for(i = 0; i < self.all.length; i++) {
+      // var singleMarker = ['GA', 40.7401398, -73.9896869];
+      name = i.name
+      lat = i.loc[0]
+      lng = i.loc[1]
+      singleMarker.push(name, lat, lng);
+    //   console.log(singleMarker);
+      markers.push(singleMarker);
+    }
+    // console.log('markers: ' + markers)
+
+    // show multiple markers on a map
+    var infoWindow = new google.maps.InfoWindow(), marker, i
+
+    // loop through all markers and put each one on the map.
+    for( i = 0; i < markers.length; i++) {
+      var position = new google.maps.LatLng(markers[i][1], markers[i][2]);
+      // bounds.extend(position);
+      marker = new google.maps.Marker({
+        position: position,
+        map: map,
+        title: markers[i][0]
+      })
+
+      // add event listener for info windows
+
+      // map.fitBounds(bounds)
+    }
+  }
+
+  google.maps.event.addDomListener(window, 'load', initialize);
+  ///GOOGLE MAP & MARKER JS END ///
+
+  // Foursquare
   // function checkIn(place) {
   //   console.log('clicked check in button')
   //   $http({
