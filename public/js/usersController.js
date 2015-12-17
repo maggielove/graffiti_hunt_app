@@ -12,7 +12,6 @@ function UsersController($http){
   // self.reroute = reroute;
 
   function loginUser(){
-    console.log('in usersController');
     $http
     .post('/users/authenticate', self.single)
     .then(function(response){
@@ -26,6 +25,8 @@ function UsersController($http){
       console.log('user after token save: ' + response.data.user.username)
     })
   }
+
+
 
   // function reroute(){
   //   $http

@@ -2,7 +2,7 @@
 <html ng-app='graffitiApp'>
   <head>
     <meta charset="utf-8">
-    <title>street art finder</title>
+    <title>hArtbeat</title>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
@@ -13,20 +13,21 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
+    <section ng-controller="UsersController as users" ui-view='users'>
+      <a ui-sref="login" ng-click="">log in</a>
+    </section>
+
     <h1 id="site-title">hArtbeat</h1>
-
-
-    <!-- <a ui-sref="login">Log In</a> -->
+    <h2 id="site-subtitle">discover & share your city's best street art</h2>
 
     <nav>
       <a ui-sref="index">street art locations</a> |
-      <a ui-sref="new" ng-click="">add location</a> |
-      <section ng-controller="UsersController as users" ui-view='users'>
-        <a ui-sref="login" ng-click="">log in</a>
-      </section>
+      <a ui-sref="new" ng-click="">add location</a>
     </nav>
 
     <section id="places-section" ng-controller="PlacesController as places" ui-view='places'>
+      <div ui-view='single'>
+      </div>
     </section>
 
     <!-- <section ng-controller="UsersController as users" ui-view='users'>

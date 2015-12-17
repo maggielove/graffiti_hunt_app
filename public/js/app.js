@@ -7,7 +7,7 @@ angularApp.config(PlaceRouter);
 function PlaceRouter($stateProvider, $urlRouterProvider) {
   // for cross-domain requests (requests to Foursquare/oauth)
 
-  $urlRouterProvider.otherwise("/");
+  $urlRouterProvider.otherwise("/index");
 
   $stateProvider
   .state('index', {
@@ -20,6 +20,17 @@ function PlaceRouter($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  // separate the single place view from the list.
+  // .state('index.single', {
+  //   // $stateProvider.defaults.useXDomain = true;
+  //   // $urlRouterProvider.defaults.useXDomain = true;
+  //   url: 'single',
+  //   views: {
+  //     'places': {
+  //     templateUrl: 'list.single.html'
+  //     }
+  //   }
+  // })
   .state('new', {
       url: '/places',
       views: {

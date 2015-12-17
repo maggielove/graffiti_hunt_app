@@ -16,7 +16,7 @@ let placesController = require('../controllers/places');
 
 router.route('/places')
   .get(placesController.findAll)
-  // add a place
+  // add a new place
   .post(placesController.insertPlace)
 
 router.route('/places/:id')
@@ -59,7 +59,7 @@ router.route('/users/authenticate')
 //   })
 // })
 
-///// ALL ROUTES BELOW THIS LINE REQUIRE A CODE \\\\\
+///// ALL ROUTES BELOW THIS LINE REQUIRE AN OAUTH CODE from Foursquare \\\\\
 
 // for url with code, exchange code for access token
 router.route('/?code=' + code + '#/index')

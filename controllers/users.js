@@ -24,7 +24,7 @@ function authenticate(req, res){
         if (err) throw err;
         if (isMatch) {
           token = jwt.sign(user, secret);
-          // save the token to the user
+          // save the token to the user in the database.
           user.token = token;
           return res.send({ message: 'Authentication successful! Token: ', token, user: user})
           // return res.send({ message: 'Authentication successful! Token: ', token: jwt.sign(user, secret), user: user})

@@ -1,19 +1,25 @@
 <div id="art-list">
   <h3>street art locations</h3>
   <ul id="venues-list">
-    <li ng-repeat="place in places.all"><input type="checkbox"><a ng-click="places.viewPlace(place); single=true" ng-href="#">{{place.name}}</a>
+    <!--  putting Users COntroller here, nested inside the places controller, to do functions requiring user and place -->
+    <li ng-repeat="place in places.all"><input ng-controller="UsersController as Users" type="checkbox" ng-click="places.markPlaceVisited()"/><a ng-click="single=true; places.viewPlace(place)" ng-href="#">{{place.name}}</a>
+      <!-- ng-click="places.viewPlace(place)" ng-href="#" -->
+      <!-- ui-sref="single" -->
+      <!-- ui-sref="single" -->
+      <!-- ng-click="places.viewPlace(place)" ng-href="#" -->
+      <!-- ng-change="users.addPlace()" -->
     </li>
   </ul>
 </div>
 
-<div id="place-view" ng-show="single" class="ng-hide">
-  <h3>{{places.single.name}}</h3>
+<div id="place-view">
+  <h1>{{places.single.name}}</h1>
   <p>{{places.single.address}}</p>
   <p>{{places.single.city}}</p>
   <p>{{places.single.zipcode}}</p>
   <p>{{places.single.artInfo}}</p>
   <p>{{places.single.areaInfo}}</p>
-  <a ui-sref="edit" ng-click="editform=true">edit</a>
+  <div><a ui-sref="edit">edit</a></div>
 
   <!-- <p>powered by Foursquare</p> -->
   <!-- <h3>{{places.single.name}}</h3>

@@ -1,4 +1,8 @@
 'use strict';
+// Include UsersController for functions that require a user and a place--ex: adding a
+//// place to a user's list of places.
+let users = 'usersController.js'
+
 angularApp
   .controller('PlacesController', PlacesController);
 
@@ -19,6 +23,7 @@ function PlacesController($http){
   self.initialize = initialize;
   self.lat = lat;
   self.lng = lng;
+  self.markPlaceVisited = markPlaceVisited;
   // self.checkIn = checkIn;
 
   // get the user's location when they add a new street art location to the map.
@@ -55,12 +60,14 @@ function PlacesController($http){
 
   // let venueId = $('.listed-locations').id
   function viewPlace(place) {
+    // var single = false;
     $http
     .get('/places/' + place._id)
     // .get('https://api.foursquare.com/v2/venues/' + place.venueId + '?client_id=' + self.client_id + '&client_secret=' + self.client_secret + '&v=20151213')
     .then(function(response){
       console.log(response);
       self.single = response.data.place[0];
+      // single === true;
       // Foursquare API info:
       // self.single = response.data.response.venue;
     })
@@ -87,7 +94,9 @@ function PlacesController($http){
     })
   }
 
-  console.log('self.all outside Google Map fn: ', self.all);
+  function markPlaceVisited(){
+    console.log('user: ', users.single)
+  }
 
   ///GOOGLE MAP & MARKER JS START ///
   function initialize() {
