@@ -9,29 +9,54 @@ ul{
   list-style-type: none;
 }
 
+a {
+  text-decoration: none;
+}
+
 label {
   padding-right: 50px;
 }
 
 .text {
   width: 30%;
-  margin-top: 5%;
+  margin-top: 1.5%;
   /*position: absolute;*/
 }
 
-/*.ng-hide:not(.ng-hide-animate) {
-  display: block!important;
-}*/
+nav.tabs{
+  padding: 20px;
+  margin: 20px;
+  width: 240px;
+  border: 1px solid black;
+}
+
+nav.tabs a{
+  display: inline-block;
+}
+
+nav.tabs a:hover{
+  color: gray;
+}
+
+nav.tabs a:active{
+  padding: 5px;
+  color: white;
+  background-color: black;
+}
 
 #site-title {
+  font-family: 'Rancho', cursive;
+  font-size: 50px;
   width: 300px;
   display: block;
   margin: 0 auto;
+  margin-top: 40px;
   text-align: center;
 }
 
 #site-subtitle {
   width: 600px;
+  font-size: 20px;
   display: block;
   margin: 0 auto;
   text-align: center;
@@ -42,18 +67,33 @@ label {
   width:100%;
 }
 
+/*Google Map*/
 #google-map {
-  height: 400px;
-  width: 600px;
-  margin-left:40%;
-  margin-top: -6%;
+  height: 500px;
+  width: 68%;
+  margin-left: 30%;
+  margin-top: -44.5%;
   /*position: absolute;*/
   /*margin-top: -25%;*/
 }
 
+/*Adjust position of google Map when one of the UI router tabas are clicked*/
 #google-map.tabs-active {
   /*border: 10px solid green;*/
-  margin-top: -33%;
+  margin-top: -30%;
+}
+
+/*Adjust position  of google Map differently when a location link is clicked.*/
+#google-map.place-vw-active {
+  margin-top: -59%;
+}
+
+#google-map.form-submitted {
+  margin-top: -10%;
+}
+
+#google-map.logging-in {
+  margin-top: -4%;
 }
 
 #map-canvas {
@@ -61,23 +101,13 @@ label {
   height: 100%;
 }
 
+/*Log In*/
+
+/*New and edit forms*/
 #form {
-  margin-top: 100px;
+  margin-top: 50px;
   /*position: absolute;*/
 }
-
-/*#edit-form {
-  margin-top: 5%;
-}*/
-
-/*#places-section {
-
-}*/
-
-#place-view.ng-scope{
-  /*height: 500px;*/
-}
-
 
 /*new form*/
 .added-alert {
@@ -90,4 +120,27 @@ label {
   text-align: center;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+
+#login {
+  float: right;
+  margin-bottom: 10px;
+}
+
+#login-link {
+  float: right;
+  margin-top: -10px;
+  margin-right: 40px;
+  font-size: 18px;
+}
+/*#edit-form {
+  margin-top: 5%;
+}*/
+
+/*#places-section {
+
+}*/
+
+#place-view.self-active{
+  height: 300px;
 }

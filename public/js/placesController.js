@@ -24,6 +24,8 @@ function PlacesController($http){
   self.lat = lat;
   self.lng = lng;
   self.addClass = addClass;
+  self.addViewClasses = addViewClasses;
+  self.addFormClass = addFormClass;
   // self.markPlaceVisited = markPlaceVisited;
   // self.checkIn = checkIn;
 
@@ -97,8 +99,26 @@ function PlacesController($http){
 
   function addClass() {
     let googleMap = document.getElementById('google-map');
-    console.log('googleMap: ', googleMap)
     $(googleMap).addClass('tabs-active');
+    // Remove place-vw-active class in case user has already clicked on a place link,
+    ///  = changing the positioning of the map
+    $(googleMap).removeClass('place-vw-active');
+  }
+
+  function addViewClasses(){
+    let googleMap = document.getElementById('google-map');
+    $(googleMap).addClass('place-vw-active');
+    // style the height of the place view div so the Google map is loaded in the
+    //// same place no matter which place is loaded.
+    let placeView = document.getElementById('place-view');
+    $(placeView).addClass('self-active');
+    $(googleMap).removeClass('tabs-active');
+  }
+
+  function addFormClass(){
+    let googleMap = document.getElementById('google-map');
+    $(googleMap).removeClass('place-vw-active');
+    $(googleMap).addClass('form-submitted');
   }
 
   // function markPlaceVisited(){

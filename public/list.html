@@ -1,8 +1,23 @@
 <div id="art-list">
-  <h3>street art locations</h3>
+  <div id="place-view">
+    <h1>{{places.single.name}}</h1>
+    <p>{{places.single.address}}</p>
+    <p>{{places.single.city}}</p>
+    <p>{{places.single.zipcode}}</p>
+    <p>{{places.single.artInfo}}</p>
+    <p>{{places.single.areaInfo}}</p>
+    <div><a ui-sref="edit" ng-click="places.addFormClass()">(edit)</a></div>
+
+    <!-- <p>powered by Foursquare</p> -->
+    <!-- <h3>{{places.single.name}}</h3>
+    <p>{{places.single.location.address}}</p>
+    <p>{{places.single.location.city}}</p> -->
+    <!-- <a href='https://foursquare.com/oauth2/authenticate?client_id={{places.client_id}}&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/'>check in!</a> -->
+  </div>
+  <h3>Have you seen...?</h3>
   <ul id="venues-list">
     <!--  putting Users COntroller here, nested inside the places controller, to do functions requiring user and place -->
-    <li ng-repeat="place in places.all"><input ng-controller="UsersController as Users" type="checkbox" ng-click="places.markPlaceVisited()"/><a ng-click="single=true; places.viewPlace(place); places.addClass()" ng-href="#">{{place.name}}</a>
+    <li ng-repeat="place in places.all"><input ng-controller="UsersController as Users" type="checkbox" ng-click="places.markPlaceVisited()"/><a ng-click="single=true; places.viewPlace(place); places.addViewClasses()" ng-href="#">{{place.name}}</a>
       <!-- ng-click="places.viewPlace(place)" ng-href="#" -->
       <!-- ui-sref="single" -->
       <!-- ui-sref="single" -->
@@ -10,20 +25,4 @@
       <!-- ng-change="users.addPlace()" -->
     </li>
   </ul>
-</div>
-
-<div id="place-view">
-  <h1>{{places.single.name}}</h1>
-  <p>{{places.single.address}}</p>
-  <p>{{places.single.city}}</p>
-  <p>{{places.single.zipcode}}</p>
-  <p>{{places.single.artInfo}}</p>
-  <p>{{places.single.areaInfo}}</p>
-  <div><a ui-sref="edit">edit</a></div>
-
-  <!-- <p>powered by Foursquare</p> -->
-  <!-- <h3>{{places.single.name}}</h3>
-  <p>{{places.single.location.address}}</p>
-  <p>{{places.single.location.city}}</p> -->
-  <!-- <a href='https://foursquare.com/oauth2/authenticate?client_id={{places.client_id}}&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/'>check in!</a> -->
 </div>
