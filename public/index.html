@@ -20,24 +20,26 @@
     <h1 id="site-title">hArtbeat</h1>
     <h2 id="site-subtitle">discover & share your city's best street art</h2>
 
-    <nav>
-      <a ui-sref="index">street art locations</a> |
-      <a ui-sref="new" ng-click="">add location</a>
+    <nav class="text" ng-controller="PlacesController as places">
+      <a ui-sref="index" ng-click="places.addClass()">street art locations</a> |
+      <a ui-sref="new" ng-click="places.addClass()">add location</a>
     </nav>
 
-    <section id="places-section" ng-controller="PlacesController as places" ui-view='places'>
-      <div ui-view='single'>
+    <div id="content-wrapper">
+      <section class="text" id="places-section" ng-controller="PlacesController as places" ui-view='places'>
+      </section>
+      <div id="google-map">
+        <div id="map-canvas" class="mapping">
+        </div>
       </div>
-    </section>
+    <div>
+
 
     <!-- <section ng-controller="UsersController as users" ui-view='users'>
     </section> -->
 
     <!-- where our JS for the Google Map will display the map -->
-    <div id="google-map">
-      <div id="map-canvas" class="mapping">
-      </div>
-    </div>
+
     <script src="http://maps.googleapis.com/maps/api/js"></script>
   </body>
 </html>

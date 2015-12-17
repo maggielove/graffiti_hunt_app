@@ -1,3 +1,4 @@
+/*Styling for the entire page*/
 body {
   font-family: sans-serif;
   /*overflow: hidden;
@@ -10,6 +11,12 @@ ul{
 
 label {
   padding-right: 50px;
+}
+
+.text {
+  width: 30%;
+  margin-top: 5%;
+  /*position: absolute;*/
 }
 
 /*.ng-hide:not(.ng-hide-animate) {
@@ -30,9 +37,23 @@ label {
   text-align: center;
 }
 
+#content-wrapper {
+  position:absolute;
+  width:100%;
+}
+
 #google-map {
   height: 400px;
+  width: 600px;
+  margin-left:40%;
+  margin-top: -6%;
+  /*position: absolute;*/
   /*margin-top: -25%;*/
+}
+
+#google-map.tabs-active {
+  /*border: 10px solid green;*/
+  margin-top: -33%;
 }
 
 #map-canvas {
@@ -40,13 +61,23 @@ label {
   height: 100%;
 }
 
-#edit-form {
-
+#form {
+  margin-top: 100px;
+  /*position: absolute;*/
 }
 
-#places-section {
+/*#edit-form {
+  margin-top: 5%;
+}*/
 
+/*#places-section {
+
+}*/
+
+#place-view.ng-scope{
+  /*height: 500px;*/
 }
+
 
 /*new form*/
 .added-alert {

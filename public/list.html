@@ -2,7 +2,7 @@
   <h3>street art locations</h3>
   <ul id="venues-list">
     <!--  putting Users COntroller here, nested inside the places controller, to do functions requiring user and place -->
-    <li ng-repeat="place in places.all"><input ng-controller="UsersController as Users" type="checkbox" ng-click="places.markPlaceVisited()"/><a ng-click="single=true; places.viewPlace(place)" ng-href="#">{{place.name}}</a>
+    <li ng-repeat="place in places.all"><input ng-controller="UsersController as Users" type="checkbox" ng-click="places.markPlaceVisited()"/><a ng-click="single=true; places.viewPlace(place); places.addClass()" ng-href="#">{{place.name}}</a>
       <!-- ng-click="places.viewPlace(place)" ng-href="#" -->
       <!-- ui-sref="single" -->
       <!-- ui-sref="single" -->

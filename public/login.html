@@ -1,6 +1,8 @@
+<div ng-show="verified=true"><p>hi {{ users.verified.username }}!</p></div>
+
 <form id="login-form" ng-submit="users.loginUser()">
+
   <h3>Log In</h3>
-  <p>hi {{ users.verified.username }}!</p>
   <strong>Username: </strong><input ng-model="users.single.username" id="username-input"/><br>
   <strong>Password: </strong><input type="password" ng-model="users.single.password" id="password-input"/><br>
   <button type="submit" id="submit-login">Submit</button>

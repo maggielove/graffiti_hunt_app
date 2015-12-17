@@ -23,7 +23,8 @@ function PlacesController($http){
   self.initialize = initialize;
   self.lat = lat;
   self.lng = lng;
-  self.markPlaceVisited = markPlaceVisited;
+  self.addClass = addClass;
+  // self.markPlaceVisited = markPlaceVisited;
   // self.checkIn = checkIn;
 
   // get the user's location when they add a new street art location to the map.
@@ -94,9 +95,15 @@ function PlacesController($http){
     })
   }
 
-  function markPlaceVisited(){
-    console.log('user: ', users.single)
+  function addClass() {
+    let googleMap = document.getElementById('google-map');
+    console.log('googleMap: ', googleMap)
+    $(googleMap).addClass('tabs-active');
   }
+
+  // function markPlaceVisited(){
+  //   console.log('user: ', users.single)
+  // }
 
   ///GOOGLE MAP & MARKER JS START ///
   function initialize() {
