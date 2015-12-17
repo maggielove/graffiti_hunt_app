@@ -1,35 +1,37 @@
-<div class="added-alert" ng-show="submitted">
-  location added!
+<div class="form-wrapper">
+  <div class="added-alert" ng-show="submitted">
+    location added!
+  </div>
+  <form class="text form" ng-submit="places.addPlace(); places.addFormClass(); submitted=true" ng-hide="submitted">
+    <!-- ng-submit="places.addPlace()" -->
+    <div>
+      <label for="name">Name</label>
+      <input ng-model="places.newPlace.name" type="text" placeholder="Frida Kahlo Mural"/>
+    </div>
+    <div>
+      <label for="address">Address</label>
+      <input ng-model="places.newPlace.address" type="text" placeholder="385 Knickerbocker Ave."/>
+    </div>
+    <div>
+      <label for="city">City</label>
+      <input ng-model="places.newPlace.city" type="text" placeholder="Brooklyn"/>
+    </div>
+    <div>
+      <label for="zipcode">Zipcode</label>
+      <input ng-model="places.newPlace.zipcode" type="text" placeholder="11237"/>
+    </div>
+    <div>
+      <label for="artistBio">About the Art</label>
+      <textarea ng-model="places.newPlace.artistBio" type="text" placeholder="Add any info about the artist, including ongoing projects."/>
+    </div>
+    <div>
+      <label for="areaInfo">About the Artist</label>
+      <textarea ng-model="places.single.areaInfo" type="text" placeholder="Is the art commentary on the surrounding area? If so, maybe talk about the area here."/>
+    </div>
+    <div>
+      <label for="artInfo">About the Area</label>
+      <textarea ng-model="places.newPlace.artInfo" type="text" placeholder="Put any interesting facts about the art, like when it was added, the inspiration of the piece, etc."/>
+    </div>
+    <button type="submit" class="submit-form">Submit</button>
+  </form>
 </div>
-<form class="text form" ng-submit="places.addPlace(); places.addFormClass(); submitted=true" ng-hide="submitted">
-  <!-- ng-submit="places.addPlace()" -->
-  <div>
-    <label for="name">Name</label>
-    <input ng-model="places.newPlace.name" type="text" placeholder="Frida Kahlo Mural"/>
-  </div>
-  <div>
-    <label for="address">Address</label>
-    <input ng-model="places.newPlace.address" type="text" placeholder="385 Knickerbocker Ave."/>
-  </div>
-  <div>
-    <label for="city">City</label>
-    <input ng-model="places.newPlace.city" type="text" placeholder="Brooklyn"/>
-  </div>
-  <div>
-    <label for="zipcode">Zipcode</label>
-    <input ng-model="places.newPlace.zipcode" type="text" placeholder="11237"/>
-  </div>
-  <div>
-    <label for="artistBio">About the Art</label>
-    <textarea ng-model="places.newPlace.artistBio" type="text" placeholder="Add any info about the artist, including ongoing projects."/>
-  </div>
-  <div>
-    <label for="areaInfo">About the Artist</label>
-    <textarea ng-model="places.single.areaInfo" type="text" placeholder="Is the art commentary on the surrounding area? If so, maybe talk about the area here."/>
-  </div>
-  <div>
-    <label for="artInfo">About the Area</label>
-    <textarea ng-model="places.newPlace.artInfo" type="text" placeholder="Put any interesting facts about the art, like when it was added, the inspiration of the piece, etc."/>
-  </div>
-  <button type="submit" class="submit-form">Submit</button>
-</form>

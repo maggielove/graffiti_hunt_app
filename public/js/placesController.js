@@ -99,10 +99,11 @@ function PlacesController($http){
 
   function addClass() {
     let googleMap = document.getElementById('google-map');
-    $(googleMap).addClass('tabs-active');
     // Remove place-vw-active class in case user has already clicked on a place link,
     ///  = changing the positioning of the map
+    $(googleMap).removeClass('logging-in');
     $(googleMap).removeClass('place-vw-active');
+    $(googleMap).addClass('tabs-active');
   }
 
   function addViewClasses(){

@@ -7,10 +7,16 @@ body {
 
 ul{
   list-style-type: none;
+  margin-left: -30px;
 }
 
 a {
   text-decoration: none;
+  color: #336600
+}
+
+a:visited{
+  color: #75a3a3;
 }
 
 label {
@@ -24,14 +30,20 @@ label {
 }
 
 nav.tabs{
-  padding: 20px;
-  margin: 20px;
+  font-family: 'Roboto Condensed', sans-serif;
+  font-size: 16px;
   width: 240px;
-  border: 1px solid black;
 }
 
 nav.tabs a{
   display: inline-block;
+  height: 30px;
+  margin: 5px;
+  padding-top: 25px;
+  padding-left: 10px;
+  padding-right: 5px;
+  background-color: rgba(255, 204, 0, 0.6);
+  border-radius: 5px;
 }
 
 nav.tabs a:hover{
@@ -40,12 +52,14 @@ nav.tabs a:hover{
 
 nav.tabs a:active{
   padding: 5px;
-  color: white;
-  background-color: black;
+  color: #ff471a;
+}
+
+a#link-all {
 }
 
 #site-title {
-  font-family: 'Rancho', cursive;
+  font-family: 'Special Elite', cursive;
   font-size: 50px;
   width: 300px;
   display: block;
@@ -55,11 +69,13 @@ nav.tabs a:active{
 }
 
 #site-subtitle {
+  font-family: 'Roboto Condensed', sans-serif;
   width: 600px;
   font-size: 20px;
   display: block;
   margin: 0 auto;
   text-align: center;
+  margin-bottom: 50px;
 }
 
 #content-wrapper {
@@ -67,12 +83,17 @@ nav.tabs a:active{
   width:100%;
 }
 
+#art-list {
+  margin-left: 25px;
+  margin-right: 10px;
+}
+
 /*Google Map*/
 #google-map {
   height: 500px;
   width: 68%;
   margin-left: 30%;
-  margin-top: -44.5%;
+  margin-top: -47.5%;
   /*position: absolute;*/
   /*margin-top: -25%;*/
 }
@@ -80,7 +101,7 @@ nav.tabs a:active{
 /*Adjust position of google Map when one of the UI router tabas are clicked*/
 #google-map.tabs-active {
   /*border: 10px solid green;*/
-  margin-top: -30%;
+  margin-top: -35%;
 }
 
 /*Adjust position  of google Map differently when a location link is clicked.*/
@@ -104,6 +125,10 @@ nav.tabs a:active{
 /*Log In*/
 
 /*New and edit forms*/
+.form-wrapper {
+  margin-left: 25px;
+}
+
 #form {
   margin-top: 50px;
   /*position: absolute;*/
@@ -128,6 +153,7 @@ nav.tabs a:active{
 }
 
 #login-link {
+  font-family: 'Roboto Condensed', sans-serif;
   float: right;
   margin-top: -10px;
   margin-right: 40px;
@@ -137,9 +163,13 @@ nav.tabs a:active{
   margin-top: 5%;
 }*/
 
-/*#places-section {
+#places-section {
+  /*background-color: #ebebe0;*/
+}
 
-}*/
+#list-header {
+  font-family: 'Roboto Condensed', sans-serif;
+}
 
 #place-view.self-active{
   height: 300px;

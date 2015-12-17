@@ -6,7 +6,8 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.js"></script>
-    <link href='https://fonts.googleapis.com/css?family=Rancho' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Special+Elite' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Roboto+Condensed' rel='stylesheet' type='text/css'>
     <script src="./js/app.js"></script>
     <script src="./js/test.js"></script>
     <script src="./js/placesController.js"></script>
@@ -22,7 +23,7 @@
     <h2 id="site-subtitle">discover & share your city's best street art</h2>
 
     <nav class="text tabs" ng-controller="PlacesController as places">
-      <a ui-sref="index" ng-click="places.addClass()">all art spots</a> |
+      <a id="link-all" ui-sref="index" ng-click="places.addClass()">all art spots</a>
       <a ui-sref="new" ng-click="places.addClass()">share a new spot</a>
     </nav>
 

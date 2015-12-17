@@ -14,15 +14,18 @@
     <p>{{places.single.location.city}}</p> -->
     <!-- <a href='https://foursquare.com/oauth2/authenticate?client_id={{places.client_id}}&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/'>check in!</a> -->
   </div>
-  <h3>Have you seen...?</h3>
-  <ul id="venues-list">
-    <!--  putting Users COntroller here, nested inside the places controller, to do functions requiring user and place -->
-    <li ng-repeat="place in places.all"><input ng-controller="UsersController as Users" type="checkbox" ng-click="places.markPlaceVisited()"/><a ng-click="single=true; places.viewPlace(place); places.addViewClasses()" ng-href="#">{{place.name}}</a>
-      <!-- ng-click="places.viewPlace(place)" ng-href="#" -->
-      <!-- ui-sref="single" -->
-      <!-- ui-sref="single" -->
-      <!-- ng-click="places.viewPlace(place)" ng-href="#" -->
-      <!-- ng-change="users.addPlace()" -->
-    </li>
-  </ul>
+
+  <div id="places-list">
+    <h3 id="list-header">Have you seen...?</h3>
+    <ul id="venues-list">
+      <!--  putting Users COntroller here, nested inside the places controller, to do functions requiring user and place -->
+      <li ng-repeat="place in places.all"><input ng-controller="UsersController as Users" type="checkbox" ng-click="places.markPlaceVisited()"/><a ng-click="single=true; places.viewPlace(place); places.addViewClasses()" ng-href="#">{{place.name}}</a>
+        <!-- ng-click="places.viewPlace(place)" ng-href="#" -->
+        <!-- ui-sref="single" -->
+        <!-- ui-sref="single" -->
+        <!-- ng-click="places.viewPlace(place)" ng-href="#" -->
+        <!-- ng-change="users.addPlace()" -->
+      </li>
+    </ul>
+  </div>
 </div>
