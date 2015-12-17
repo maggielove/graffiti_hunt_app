@@ -1,8 +1,11 @@
 /*Styling for the entire page*/
 body {
   font-family: sans-serif;
+  z-index: -1;
+  position: absolute;
+  width: 100%;
   /*overflow: hidden;
-  position: absolute;*/
+  */
 }
 
 ul{
@@ -80,6 +83,8 @@ a#link-all {
 
 #content-wrapper {
   position:absolute;
+  z-index: 0;
+  position: absolute;
   width:100%;
 }
 
@@ -90,31 +95,12 @@ a#link-all {
 
 /*Google Map*/
 #google-map {
-  height: 500px;
-  width: 68%;
-  margin-left: 30%;
-  margin-top: -47.5%;
-  /*position: absolute;*/
+  height: 700px;
+  width: 100%;
+  margin-top: 0;
+  z-index: 1;
+  position: absolute;
   /*margin-top: -25%;*/
-}
-
-/*Adjust position of google Map when one of the UI router tabas are clicked*/
-#google-map.tabs-active {
-  /*border: 10px solid green;*/
-  margin-top: -35%;
-}
-
-/*Adjust position  of google Map differently when a location link is clicked.*/
-#google-map.place-vw-active {
-  margin-top: -59%;
-}
-
-#google-map.form-submitted {
-  margin-top: -10%;
-}
-
-#google-map.logging-in {
-  margin-top: -4%;
 }
 
 #map-canvas {
@@ -149,13 +135,14 @@ a#link-all {
 
 #login {
   float: right;
-  margin-bottom: 10px;
+  margin-right: 30px;
+  margin-bottom: 100px;
 }
 
 #login-link {
   font-family: 'Roboto Condensed', sans-serif;
   float: right;
-  margin-top: -10px;
+  margin-top: 15px;
   margin-right: 40px;
   font-size: 18px;
 }
@@ -164,7 +151,13 @@ a#link-all {
 }*/
 
 #places-section {
-  /*background-color: #ebebe0;*/
+  z-index: 2;
+  position: absolute;
+  background-color: rgba(235, 235, 224, 0.89);
+  border-radius: 5px;
+  border: 1px solid black;
+  margin-top: 50px;
+  margin-left: 20px;
 }
 
 #list-header {

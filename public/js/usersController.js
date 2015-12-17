@@ -9,7 +9,6 @@ function UsersController($http){
   self.loginUser = loginUser;
   self.single = {};
   self.verified = {};
-  self.addLogInClass = addLogInClass;
 
   // self.reroute = reroute;
 
@@ -33,11 +32,6 @@ function UsersController($http){
       // console.log('user after token save: ' + response.data.user.username)
     })
   console.log('verified var: ', verified)
-  }
-
-  function addLogInClass() {
-    let googleMap = document.getElementById('google-map');
-    $(googleMap).addClass('logging-in');
   }
 
   // function reroute(){

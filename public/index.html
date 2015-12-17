@@ -16,15 +16,15 @@
   </head>
   <body>
     <section ng-controller="UsersController as users" ui-view='users'>
-      <a id="login-link" ui-sref="login" ng-click="users.addLogInClass()">log in</a>
+      <a id="login-link" ui-sref="login" ng-click="">log in</a>
     </section>
 
     <h1 id="site-title">Artbeat</h1>
     <h2 id="site-subtitle">discover & share your city's best street art</h2>
 
     <nav class="text tabs" ng-controller="PlacesController as places">
-      <a id="link-all" ui-sref="index" ng-click="places.addClass()">all art spots</a>
-      <a ui-sref="new" ng-click="places.addClass()">share a new spot</a>
+      <a id="link-all" ui-sref="index" ng-click="">all art spots</a>
+      <a ui-sref="new" ng-click="">share a new spot</a>
     </nav>
 
     <div id="content-wrapper">
