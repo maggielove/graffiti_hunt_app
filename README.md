@@ -33,7 +33,7 @@ I initially envisioned this app as a game that would connect users to the street
 ## Unsolved Problems:  
 In order to "check in" to a place with the Foursquare API, I needed an access token for the user logged in to my app. Following [these instructions](https://developer.foursquare.com/overview/auth) for "web server applications", I was able to get a code after allowing access to my Foursquare account, but I was not able to convert this code into a token. 
 
-I also wanted to implement image uploads using [filestack](https://www.filestack.com/?fp=1). But when I was able to get the filepicker button to load, other functions needed at page load were no longer happenning. (Note: when I was using this on December 16, it was called filepicker--check API Key, code to see if there are changes to be made.) 
+I also wanted to implement image uploads using [filestack](https://www.filestack.com/?fp=1). But when I was able to get the filepicker button to load, other functions needed at page load were no longer happenning, so I'll probably look at using a callback function, for instance. (Note: when I was using this on December 16, it was called filepicker--check API Key, code to see if there are changes to be made.) 
 
 I'm having difficulty hiding the "edit" link when an item on the list is not being shown.
 
