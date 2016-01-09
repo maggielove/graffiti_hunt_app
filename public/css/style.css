@@ -155,7 +155,7 @@ a#link-all {
   position: absolute;
   background-color: rgba(235, 235, 224, 0.89);
   border-radius: 5px;
-  border: 1px solid black;
+  /*border: 1px solid black;*/
   margin-top: 50px;
   margin-left: 20px;
 }

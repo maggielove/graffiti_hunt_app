@@ -5,9 +5,6 @@ let jwt = require('jsonwebtoken');
 let expressJwt = require('express-jwt');
 let secret = process.env._SECRET;
 let mongoose = require('mongoose');
-const client_id = process.env.CLIENT_ID;
-const client_secret = process.env.CLIENT_SECRET;
-const push_secret = process.env.PUSH_SECRET;
 var token;
 
 //Authenticate
@@ -23,10 +20,10 @@ function authenticate(req, res){
       user.authenticate(req.body.password, function(err, isMatch) {
         if (err) throw err;
         if (isMatch) {
-          token = jwt.sign(user, secret);
+          token = jwt.sign(user, secret, {expiresIn: 144000});
           // save the token to the user in the database.
           user.token = token;
-          return res.send({ message: 'Authentication successful! Token: ', token, user: user})
+          return res.send({ message: 'Authentication successful! Token: ', token:token, user: user})
           // return res.send({ message: 'Authentication successful! Token: ', token: jwt.sign(user, secret), user: user})
 
           console.log('user.token: ' + user.token)
@@ -38,24 +35,12 @@ function authenticate(req, res){
   }); //ends function(err, user)
 } //ends authenticate
 
-// function redirect(req, res){
-//   res.redirect('https://foursquare.com/oauth2/authenticate?client_id=' + client_id + '&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/')
-// }
-
-// access token from Foursquare/ OAuth2
-function getAccessToken(req, res){
-  console.log('in usersController getAccessToken function');
-  // request('https://foursquare.com/oauth2/access_token?client_id=' + client_id + '&client_secret=' + client_secret + '&grant_type=authorization_code&redirect_uri=https://graffiti-hunt.herokuapp.com/&code=' + code, function(err, response, body) {
-  //   if(!err && response.statusCode == 200) {
-  //     console.log(body);
-  //     res.json(body);
-  //   }
-  // });
-  // res.send({ access_token: access_token });
+function test(){
+  console.log('If you\'re reading this it should mean user has been granted token');
 }
 
 module.exports = {
   authenticate: authenticate,
-  getAccessToken: getAccessToken
-  // redirect: redirect
+  test: test
+  // getAccessToken: getAccessToken
 }
