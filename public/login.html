@@ -1,5 +1,5 @@
 <div id="login">
-  <div ng-show="verified=true"><p>hi {{ users.verified.username }}!</p></div>
+  <div ng-show="verified=true"><p>hi {{ users.verified.username }}! <a> | log out</a></p></div>
 
   <form id="login-form" ng-submit="users.loginUser()">
     <strong>Username: </strong><input ng-model="users.single.username" id="username-input"/><br>
@@ -8,7 +8,7 @@
   </form>
 </div>
 
-<button ng-click="users.test()" type="submit" id="test-button">Test token header</button> 
+<button ng-click="users.test()" type="submit" id="test-button">Test token header</button>
 
 
 <!-- <script>

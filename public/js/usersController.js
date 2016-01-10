@@ -26,8 +26,6 @@ function UsersController($http){
         self.token = response.data.token;
         console.log('response.data.user.username: ' + response.data.user.username);
         console.log('self.token: ', self.token);
-        // $http.headers =
-        //   {'x-access': token};
         return verified = true;
         // !"guest";
       } else {
@@ -43,11 +41,13 @@ function UsersController($http){
   function test() {
     console.log('clicked test button');
     console.log('self.token: ' + self.token);
+    console.log('current user ' + self.verified.username);
     $http({
       url: "/test",
       method: "GET",
       headers: {
-        'x-access': self.token
+        'x-access': self.token,
+        'current-user': self.verified
       }
     })
   }

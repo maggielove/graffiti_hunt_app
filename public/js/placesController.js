@@ -23,7 +23,7 @@ function PlacesController($http){
   self.initialize = initialize;
   self.lat = lat;
   self.lng = lng;
-  // self.markPlaceVisited = markPlaceVisited;
+  self.markPlaceVisited = markPlaceVisited;
   // self.checkIn = checkIn;
 
   // get the user's location when they add a new street art location to the map.
@@ -94,9 +94,10 @@ function PlacesController($http){
     })
   }
 
-  // function markPlaceVisited(){
-  //   console.log('user: ', users.single)
-  // }
+  function markPlaceVisited(){
+    console.log('in markPlaceVisited');
+    console.log('user: ', users.verified);
+  }
 
   ///GOOGLE MAP & MARKER JS START ///
   function initialize() {
