@@ -6,20 +6,15 @@
     <p>{{places.single.zipcode}}</p>
     <p>{{places.single.artInfo}}</p>
     <p>{{places.single.areaInfo}}</p>
-    <div><a ui-sref="edit" ng-click="">(edit) | </a><a ng-href="#" ng-click="places.markPlaceVisited()">add to my list of places</a></div>
+    <div ng-show="places.display"><a ui-sref="edit" ng-click="">(edit) | </a><a ng-href="#" ng-click="places.markPlaceVisited()">add to my list of places</a></div>
 
-    <!-- <p>powered by Foursquare</p> -->
-    <!-- <h3>{{places.single.name}}</h3>
-    <p>{{places.single.location.address}}</p>
-    <p>{{places.single.location.city}}</p> -->
-    <!-- <a href='https://foursquare.com/oauth2/authenticate?client_id={{places.client_id}}&response_type=code&redirect_uri=https://graffiti-hunt.herokuapp.com/'>check in!</a> -->
   </div>
 
   <div id="places-list">
-    <h3 id="list-header">Have you seen...?</h3>
+    <h3 id="list-header">All Art Spots</h3>
     <ul id="venues-list">
       <!--  putting Users COntroller here, nested inside the places controller, to do functions requiring user and place -->
-      <li ng-repeat="place in places.all"><input ng-controller="UsersController as Users" type="checkbox" ng-click="places.markPlaceVisited()"/><a ng-click="single=true; places.viewPlace(place)" ng-href="#">{{place.name}}</a>
+      <li ng-repeat="place in places.all"><input ng-controller="UsersController as Users" type="checkbox" ng-click="places.markPlaceVisited()"/><a ng-click="places.display = true; places.viewPlace(place)" ng-href="#" ng-class= "{ active: display }">{{place.name}}</a>
         <!-- ng-click="places.viewPlace(place)" ng-href="#" -->
         <!-- ui-sref="single" -->
         <!-- ui-sref="single" -->

@@ -11,15 +11,25 @@ function PlaceRouter($stateProvider, $urlRouterProvider) {
 
   $stateProvider
   .state('index', {
-    // $stateProvider.defaults.useXDomain = true;
-    // $urlRouterProvider.defaults.useXDomain = true;
     url: '/',
     views: {
       'places': {
       templateUrl: 'list.html'
-      }
+    },
+    'users' : {
+      templateUrl: 'login.html'
+    }
     }
   })
+  // .state('index.login', {
+  //   url: 'users/authenticate',
+  //   controller: 'users',
+  //   views: {
+  //     'users' : {
+  //       templateUrl: 'list.login.html'
+  //     }
+  //   }
+  // })
   // separate the single place view from the list.
   // .state('index.single', {
   //   // $stateProvider.defaults.useXDomain = true;
@@ -36,22 +46,20 @@ function PlaceRouter($stateProvider, $urlRouterProvider) {
       views: {
         'places' : {
           templateUrl: 'new.html'
+        },
+        'users' : {
+          templateUrl: 'login.html'
         }
       }
     })
-  .state('login', {
-    url: '/users/authenticate',
-    views: {
-      'users' : {
-        templateUrl: 'login.html'
-      }
-    }
-  })
   .state('edit', {
     url: '/places/:id',
     views: {
       'places' : {
         templateUrl: 'edit.html'
+      },
+      'users' : {
+        templateUrl: 'login.html'
       }
     }
   })

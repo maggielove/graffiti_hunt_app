@@ -24,6 +24,7 @@ function PlacesController($http){
   self.lat = lat;
   self.lng = lng;
   self.markPlaceVisited = markPlaceVisited;
+  self.display = false;
   // self.checkIn = checkIn;
 
   // get the user's location when they add a new street art location to the map.

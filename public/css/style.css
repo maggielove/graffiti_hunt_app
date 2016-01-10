@@ -8,6 +8,10 @@ body {
   */
 }
 
+.ng-hide:not(.ng-hide-animate) {
+  display: none!important;
+}
+
 ul{
   list-style-type: none;
   margin-left: -30px;
@@ -59,6 +63,14 @@ nav.tabs a:active{
 }
 
 a#link-all {
+}
+
+#link-all.active {
+  background-color: rgb(230, 184, 0);
+}
+
+#new-spot.active {
+  background-color: rgb(230, 184, 0);
 }
 
 #site-title {
