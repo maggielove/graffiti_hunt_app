@@ -35,10 +35,7 @@ In order to "check in" to a place with the Foursquare API, I needed an access to
 
 I also wanted to implement image uploads using [filestack](https://www.filestack.com/?fp=1). But when I was able to get the filepicker button to load, other functions needed at page load were no longer happenning, so I'll probably look at using a callback function, for instance. (Note: when I was using this on December 16, it was called filepicker--check API Key, code to see if there are changes to be made.) 
 
-I'm having difficulty hiding the "edit" link when an item on the list is not being shown.
-
 ## Next Steps 
-* User log in: store token locally (possibly using factories/ services)
 * User log out
 * Make the log in form disappear on verification of a user. 
 * Make sure location coordinates are written in the place model in a way that matches the MongoDB standard. 
