@@ -2,6 +2,29 @@
 angularApp
   .controller('UsersController', UsersController);
 
+// consider moving this to diff. file
+angularApp.service('currentUserFactory',  function($window){
+    var currentUser;
+    var sessionToken;
+
+    // maybe $http should be above..
+    this.getCurrentUser = function($http){
+      sessionToken = $window.sessionStorage.getItem('token');
+      $http
+      .post('/users/current', sessionToken)
+      .then(function(response){
+        currentUser = response.data.user;
+      })
+      return currentUser;
+    }
+
+    // Test this by trying it on places controller.
+
+      // END OF FACTORY FUNCTION. THEN PASS THIS TO PLACES CONTROLLER TO ADD TO USER's LIST OF PLACES.
+      // Get id of location being added.
+      // insert id of that location into user's list of locations.
+  });
+
 UsersController.$inject = ['$http', '$window'];
 
 // UsersController.$inject = ['$window'];

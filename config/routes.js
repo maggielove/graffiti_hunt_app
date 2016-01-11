@@ -23,7 +23,8 @@ router.route('/places/:id')
 router.route('/users/authenticate')
   .post(usersController.authenticate)
 
-
+router.route('/users/current')
+  .post(usersController.findCurrentUser);
 
 //Route middleware to verify protected token.
 // If you get a response from client, verify token

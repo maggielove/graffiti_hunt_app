@@ -35,12 +35,30 @@ function authenticate(req, res){
   }); //ends function(err, user)
 } //ends authenticate
 
+function findCurrentUser(req, res){
+  console.log('token: ', req.body.sessionToken);
+  User.findOne({
+    token: req.body.sessionToken
+  }, function(err, user){
+    if (err) throw err;
+    if (user == undefined) {
+      res.send({ success: false, message: 'User with sessionStorage token not found.'});
+      //check: are sessionStorage tokens same every time? need to delete tokens fr db at log out?
+    } else {
+      if (user.token == req.body.sessionToken) {
+        return res.send({message: 'Current user found!: ', user: user })
+      }
+     }
+   })
+  }
+
 function test(){
   console.log('If you\'re reading this it should mean user has been granted token');
 }
 
 module.exports = {
   authenticate: authenticate,
-  test: test
+  test: test,
+  findCurrentUser: findCurrentUser
   // getAccessToken: getAccessToken
 }
