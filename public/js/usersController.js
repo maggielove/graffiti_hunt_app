@@ -2,32 +2,48 @@
 angularApp
   .controller('UsersController', UsersController);
 
-// consider moving this to diff. file
-angularApp.service('currentUserFactory',  function($window){
-    var currentUser;
-    var sessionToken;
+angularApp.factory('findUserFactory', function($window, $http){
+    var service = {};
+    var currentUser = {};
+    var sessionToken = { currentToken: '' };
 
-    // maybe $http should be above..
-    this.getCurrentUser = function($http){
-      sessionToken = $window.sessionStorage.getItem('token');
+    service.getCurrentUser = function(){
+      sessionToken.currentToken = $window.sessionStorage.getItem('token');
+      console.log('sessionToken retrieved in factory function: ' + sessionToken.currentToken);
       $http
       .post('/users/current', sessionToken)
       .then(function(response){
         currentUser = response.data.user;
       })
       return currentUser;
-    }
+    } // end service
 
-    // Test this by trying it on places controller.
+    return service;
+  })
 
-      // END OF FACTORY FUNCTION. THEN PASS THIS TO PLACES CONTROLLER TO ADD TO USER's LIST OF PLACES.
-      // Get id of location being added.
-      // insert id of that location into user's list of locations.
-  });
+// angularApp.service('currentUserService',  function($window, $http){
+//     var currentUser = {};
+//     var sessionToken = '';
+//
+//     // maybe $http should be here?..
+//     this.getCurrentUser = function(){
+//       sessionToken = $window.sessionStorage.getItem('token');
+//       $http
+//       .post('/users/current', sessionToken)
+//       .then(function(response){
+//         currentUser = response.data.user;
+//       })
+//       return currentUser;
+//     }
+//
+//     // Test this by trying it on places controller.
+//
+//       // END OF FACTORY FUNCTION. THEN PASS THIS TO PLACES CONTROLLER TO ADD TO USER's LIST OF PLACES.
+//       // Get id of location being added.
+//       // insert id of that location into user's list of locations.
+//   });
 
 UsersController.$inject = ['$http', '$window'];
-
-// UsersController.$inject = ['$window'];
 
 function UsersController($http, $window){
   let self = this;

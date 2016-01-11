@@ -6,9 +6,11 @@ let users = 'usersController.js'
 angularApp
   .controller('PlacesController', PlacesController);
 
-PlacesController.$inject = ['$http'];
+PlacesController.$inject = ['$http', 'findUserFactory'];
 
-function PlacesController($http){
+// PlacesController.$inject = ['findUserFactory'];
+
+function PlacesController($http, findUserFactory){
   let self = this;
   self.all = [];
   self.single = {};
@@ -97,7 +99,10 @@ function PlacesController($http){
 
   function markPlaceVisited(){
     console.log('in markPlaceVisited');
-    console.log('user: ', users.verified);
+    findUserFactory.getCurrentUser();
+    console.log('currentUser: ' + findUserFactory.currentUser);
+    // back end? .post .then get user's places
+    // currentUser.places.push(self.single._id);
   }
 
   ///GOOGLE MAP & MARKER JS START ///

@@ -23,7 +23,7 @@ function authenticate(req, res){
           token = jwt.sign(user, secret, {expiresIn: 144000});
           // save the token to the user in the database.
           user.token = token;
-          return res.send({ message: 'Authentication successful! Token: ', token:token, user: user})
+          return res.send({ message: 'Authentication successful! Token: ', token, user: user})
           // return res.send({ message: 'Authentication successful! Token: ', token: jwt.sign(user, secret), user: user})
 
           console.log('user.token: ' + user.token)
@@ -36,16 +36,16 @@ function authenticate(req, res){
 } //ends authenticate
 
 function findCurrentUser(req, res){
-  console.log('token: ', req.body.sessionToken);
+  console.log('token hash/back end: ', req.body);
   User.findOne({
-    token: req.body.sessionToken
+    token: req.body.currentToken
   }, function(err, user){
     if (err) throw err;
     if (user == undefined) {
       res.send({ success: false, message: 'User with sessionStorage token not found.'});
       //check: are sessionStorage tokens same every time? need to delete tokens fr db at log out?
     } else {
-      if (user.token == req.body.sessionToken) {
+      if (user.token == req.body.currentToken) {
         return res.send({message: 'Current user found!: ', user: user })
       }
      }
