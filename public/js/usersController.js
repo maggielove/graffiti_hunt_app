@@ -2,9 +2,11 @@
 angularApp
   .controller('UsersController', UsersController);
 
-UsersController.$inject = ['$http'];
+UsersController.$inject = ['$http', '$window'];
 
-function UsersController($http){
+// UsersController.$inject = ['$window'];
+
+function UsersController($http, $window){
   let self = this;
   self.loginUser = loginUser;
   self.test = test;
@@ -24,8 +26,10 @@ function UsersController($http){
         // $(#login-form).hide();
         alert("login successful");
         self.token = response.data.token;
+        $window.sessionStorage.token = response.data.token;
         console.log('response.data.user.username: ' + response.data.user.username);
         console.log('self.token: ', self.token);
+        console.log('$windowSessionStorage.token: ' + window.sessionStorage.token);
         return verified = true;
         // !"guest";
       } else {
