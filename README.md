@@ -45,7 +45,8 @@ I also wanted to implement image uploads using [filestack](https://www.filestack
 * Let user comment on a post.
 * Let user view a listing (and map markers) for street art near them (Geodist).
 * Let user search for a place (name)
-* Let a user "like" a street art location.  
+* Let a user "like" a street art location. 
+* User sign up 
 * HTML: 
     * Single place view: Add labels information being displayed
 * CSS:
