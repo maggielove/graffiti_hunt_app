@@ -56,13 +56,27 @@ function findCurrentUser(req, res){
    })
   }
 
-function test(){
-  console.log('If you\'re reading this it should mean user has been granted token');
-}
+function updateUser(request, response) {
+  let id = request.params.id;
+  console.log('request.body shd b place id: ' + request.body.data);
+  User.findById({ _id: id}, function(error, user) {
+    if (error) response.json( { message: 'Error finding user: ' + user});
+    user.places.push(request.body)
+    user.save(function(error) {
+      if (error) response.json({ message: 'Error saving user: ' + error});
+      response.json({ message: 'User updated', user: user});
+    });
+  });
+};
+
+// function test(){
+//   console.log('If you\'re reading this it should mean user has been granted token');
+// }
 
 module.exports = {
   authenticate: authenticate,
-  test: test,
-  findCurrentUser: findCurrentUser
+  // test: test,
+  findCurrentUser: findCurrentUser,
+  updateUser: updateUser
   // getAccessToken: getAccessToken
 }

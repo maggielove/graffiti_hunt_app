@@ -20,6 +20,9 @@ router.route('/places/:id')
   .get(placesController.showPlace)
   .put(placesController.updatePlace)
 
+router.route('/users/:id')
+  .put(usersController.updateUser)
+
 router.route('/users/authenticate')
   .post(usersController.authenticate)
 
@@ -49,7 +52,7 @@ if (token) {
  }
 });
 
-router.route('/test')
-    .get(usersController.test);
+// router.route('/test')
+//     .get(usersController.test);
 
 module.exports = router;

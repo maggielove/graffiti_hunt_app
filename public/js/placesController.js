@@ -1,19 +1,14 @@
 'use strict';
-// Include UsersController for functions that require a user and a place--ex: adding a
-//// place to a user's list of places.
-let users = 'usersController.js'
-
-
-
-// PlacesController.$inject = ['findUserFactory'];
 
 function PlacesController(findUserService, $http){
   let self = this;
   self.all = [];
+  // self.currentUserId = currentUserId;
   self.single = {};
   self.editedPlace = {};
   self.client_id = '';
   self.client_secret = '';
+  self.currentUserId = '';
   self.getPlaces = getPlaces;
   self.viewPlace = viewPlace;
   self.addPlace = addPlace;
@@ -45,7 +40,6 @@ function PlacesController(findUserService, $http){
   getPlaces();
   function getPlaces(){
     $http
-      ////note: WILL HAVE TO CHANGE THIS TO MATCH HEROKU ROUTES
       .get('/places')
       .then(function(response) {
         self.all = response.data.places;
@@ -58,18 +52,14 @@ function PlacesController(findUserService, $http){
       })
   }
 
-  // let venueId = $('.listed-locations').id
   function viewPlace(place) {
     // var single = false;
     $http
     .get('/places/' + place._id)
-    // .get('https://api.foursquare.com/v2/venues/' + place.venueId + '?client_id=' + self.client_id + '&client_secret=' + self.client_secret + '&v=20151213')
     .then(function(response){
       console.log(response);
       self.single = response.data.place[0];
       // single === true;
-      // Foursquare API info:
-      // self.single = response.data.response.venue;
     })
   };
 
@@ -94,17 +84,25 @@ function PlacesController(findUserService, $http){
     })
   }
 
-  function markPlaceVisited(){
-    console.log('in markPlaceVisited');
+  function markPlaceVisited(place){
     findUserService.getCurrentUser()
       .then(function(data){
         console.log('result of service in markPlaceVisited: ' + data);
+        return self.currentUserId = data;
+        console.log(self.currentUserId);
+        // return self.currentUserId;
       })
-    // this.userNow = findUserFactory.getCurrentUser()
-    // console.log('currentUser: ' + findUserService.currentUser.then);
+      console.log('currentUserId: ' + self.currentUserId);
+      // $http
+      // .put('/users/' + currentUserId)
+      // .then(function(response) {
+      //   // add a var to service that returns a user's list of place ids...
+      // })
+
     // back end? .post .then get user's places
     // currentUser.places.push(self.single._id);
   }
+  console.log(self.currentUserId);
 
   ///GOOGLE MAP & MARKER JS START ///
   function initialize() {
@@ -180,34 +178,31 @@ function PlacesController(findUserService, $http){
 
   ///GOOGLE MAP & MARKER JS END ///
 
-  // Foursquare
-  // function checkIn(place) {
-  //   console.log('clicked check in button')
-  //   $http({
-  //     url : 'https://foursquare.com/oauth2/authenticate?client_id=' + self.client_id + '&response_type=token&redirect_uri=https://graffiti-hunt.herokuapp.com/',
-  //     method: 'GET',
-  //     withCredentials: true
-  //   })
-  // }
 } // ends PlacesController function
 
 angularApp.service('findUserService', function($window, $http){
-      // var service = {};
+      // currentUser is a private variable
       var currentUser = '';
+      // the function that will retrieve user information from the backend
       this.currentUserCall;
       this.sessionToken = { currentToken: '' };
 
       this.getCurrentUser = function(){
+        // get the sessionToken from window session storage
         this.sessionToken.currentToken = $window.sessionStorage.getItem('token');
         console.log('sessionToken in service function: ' + this.sessionToken.currentToken);
         this.currentUserCall =
         $http
+        // Send the session token to the back end, where it can be matched with
+        /// the token of a user in the db.
         .post('/users/current', this.sessionToken)
         .then(function(response){
-          currentUser = response.data.user.username;
+          currentUser = response.data.user._id;
           console.log('currentUser: ' + currentUser);
           return currentUser;
         })
+        // Return the function of currentUserCall so that the data (returned currentUser)
+        /// is available to the places controller, above.
         return this.currentUserCall;
       } // end service
     })
