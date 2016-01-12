@@ -2,25 +2,6 @@
 angularApp
   .controller('UsersController', UsersController);
 
-angularApp.factory('findUserFactory', function($window, $http){
-    var service = {};
-    var currentUser = {};
-    var sessionToken = { currentToken: '' };
-
-    service.getCurrentUser = function(){
-      sessionToken.currentToken = $window.sessionStorage.getItem('token');
-      console.log('sessionToken retrieved in factory function: ' + sessionToken.currentToken);
-      $http
-      .post('/users/current', sessionToken)
-      .then(function(response){
-        currentUser = response.data.user;
-      })
-      return currentUser;
-    } // end service
-
-    return service;
-  })
-
 // angularApp.service('currentUserService',  function($window, $http){
 //     var currentUser = {};
 //     var sessionToken = '';
@@ -59,7 +40,7 @@ function UsersController($http, $window){
     $http
     .post('/users/authenticate', self.single)
     .then(function(response){
-      console.log('user before token save: ' + response.data.user)
+      console.log('user.token after token save: ' + response.data.user.token)
       self.verified = response.data.user;
       if (response.data.token) {
         // $(#login-form).hide();
@@ -77,7 +58,6 @@ function UsersController($http, $window){
       }
       // console.log('verified var: ', verified);
       // console.log(response)
-      // console.log('user after token save: ' + response.data.user.username)
     })
   }
 

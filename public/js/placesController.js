@@ -3,14 +3,11 @@
 //// place to a user's list of places.
 let users = 'usersController.js'
 
-angularApp
-  .controller('PlacesController', PlacesController);
 
-PlacesController.$inject = ['$http', 'findUserFactory'];
 
 // PlacesController.$inject = ['findUserFactory'];
 
-function PlacesController($http, findUserFactory){
+function PlacesController(findUserService, $http){
   let self = this;
   self.all = [];
   self.single = {};
@@ -99,8 +96,9 @@ function PlacesController($http, findUserFactory){
 
   function markPlaceVisited(){
     console.log('in markPlaceVisited');
-    findUserFactory.getCurrentUser();
-    console.log('currentUser: ' + findUserFactory.currentUser);
+    findUserService.getCurrentUser();
+    // this.userNow = findUserFactory.getCurrentUser()
+    console.log('currentUser: ' + findUserService.currentUser.then);
     // back end? .post .then get user's places
     // currentUser.places.push(self.single._id);
   }
@@ -188,4 +186,36 @@ function PlacesController($http, findUserFactory){
   //     withCredentials: true
   //   })
   // }
-}
+} // ends PlacesController function
+
+angularApp.service('findUserService', function($window, $http){
+      // var service = {};
+      var privateUser = '';
+      this.currentUser = 'jin';
+      // var currentUser = this.currentUser;
+      this.sessionToken = { currentToken: '' };
+
+      this.getCurrentUser = function(){
+        this.sessionToken.currentToken = $window.sessionStorage.getItem('token');
+        console.log('sessionToken in service function: ' + this.sessionToken.currentToken);
+        this.currentUser =
+        $http
+        .post('/users/current', this.sessionToken)
+        .then(function(response){
+          privateUser = response.data.user.username;
+          console.log('currentUser: ' + privateUser);
+          return privateUser;
+        })
+        return this.currentUser;
+        // console.log('currenttt userrr: ' + this.currentUser);
+        // return this.currentUser;
+        // this.currentUser = currentUser;
+      } // end service
+      // return currentUser
+      // return service;
+    })
+
+PlacesController.$inject = ['findUserService', '$http'];
+
+angularApp
+  .controller('PlacesController', PlacesController);

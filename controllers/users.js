@@ -23,10 +23,13 @@ function authenticate(req, res){
           token = jwt.sign(user, secret, {expiresIn: 144000});
           // save the token to the user in the database.
           user.token = token;
+          user.save(function(error) {
+            if (error) res.json( {message: 'Error updating user: ' + error });
+            res.json( {message: 'User updated', user: user});
+          })
+          console.log('user.token: ' + user.token)
           return res.send({ message: 'Authentication successful! Token: ', token, user: user})
           // return res.send({ message: 'Authentication successful! Token: ', token: jwt.sign(user, secret), user: user})
-
-          console.log('user.token: ' + user.token)
         } else {
           return res.send({ message: 'Password not a match. Unable to provide token.'});
         }
@@ -46,6 +49,7 @@ function findCurrentUser(req, res){
       //check: are sessionStorage tokens same every time? need to delete tokens fr db at log out?
     } else {
       if (user.token == req.body.currentToken) {
+        console.log('found user/db: ' + user);
         return res.send({message: 'Current user found!: ', user: user })
       }
      }
