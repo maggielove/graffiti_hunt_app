@@ -101,7 +101,7 @@ function PlacesController(findUserService, $http){
         console.log('result of service in markPlaceVisited: ' + data);
       })
     // this.userNow = findUserFactory.getCurrentUser()
-    console.log('currentUser: ' + findUserService.currentUser.then);
+    // console.log('currentUser: ' + findUserService.currentUser.then);
     // back end? .post .then get user's places
     // currentUser.places.push(self.single._id);
   }
@@ -193,29 +193,23 @@ function PlacesController(findUserService, $http){
 
 angularApp.service('findUserService', function($window, $http){
       // var service = {};
-      var privateUser = '';
-      this.currentUser = 'jin';
-      // var currentUser = this.currentUser;
+      var currentUser = '';
+      this.currentUserCall;
       this.sessionToken = { currentToken: '' };
 
       this.getCurrentUser = function(){
         this.sessionToken.currentToken = $window.sessionStorage.getItem('token');
         console.log('sessionToken in service function: ' + this.sessionToken.currentToken);
-        this.currentUser =
+        this.currentUserCall =
         $http
         .post('/users/current', this.sessionToken)
         .then(function(response){
-          privateUser = response.data.user.username;
-          console.log('currentUser: ' + privateUser);
-          return privateUser;
+          currentUser = response.data.user.username;
+          console.log('currentUser: ' + currentUser);
+          return currentUser;
         })
-        return this.currentUser;
-        // console.log('currenttt userrr: ' + this.currentUser);
-        // return this.currentUser;
-        // this.currentUser = currentUser;
+        return this.currentUserCall;
       } // end service
-      // return currentUser
-      // return service;
     })
 
 PlacesController.$inject = ['findUserService', '$http'];
