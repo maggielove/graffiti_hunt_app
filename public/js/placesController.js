@@ -88,11 +88,14 @@ function PlacesController(findUserService, $http){
     findUserService.getCurrentUser()
       .then(function(data){
         console.log('result of service in markPlaceVisited: ' + data);
-        return self.currentUserId = data;
-        console.log(self.currentUserId);
+        self.currentUserId = data;
+        return self.currentUserId;
+        // return self.currentUserId = data;
         // return self.currentUserId;
       })
-      console.log('currentUserId: ' + self.currentUserId);
+      .then(function(data) {
+        console.log('currentUserId: ' + self.currentUserId)
+      });
       // $http
       // .put('/users/' + currentUserId)
       // .then(function(response) {
