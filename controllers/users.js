@@ -25,7 +25,7 @@ function authenticate(req, res){
           user.token = token;
           user.save(function(error) {
             if (error) res.json( {message: 'Error updating user: ' + error });
-            res.json( {message: 'User updated', user: user});
+            // res.json( {message: 'User updated', user: user});
           })
           console.log('user.token: ' + user.token)
           return res.send({ message: 'Authentication successful! Token: ', token, user: user})

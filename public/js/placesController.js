@@ -96,7 +96,10 @@ function PlacesController(findUserService, $http){
 
   function markPlaceVisited(){
     console.log('in markPlaceVisited');
-    findUserService.getCurrentUser();
+    findUserService.getCurrentUser()
+      .then(function(data){
+        console.log('result of service in markPlaceVisited: ' + data);
+      })
     // this.userNow = findUserFactory.getCurrentUser()
     console.log('currentUser: ' + findUserService.currentUser.then);
     // back end? .post .then get user's places
