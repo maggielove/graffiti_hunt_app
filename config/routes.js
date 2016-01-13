@@ -23,6 +23,9 @@ router.route('/places/:id')
 router.route('/users/:id')
   .put(usersController.updateUser)
 
+router.route('/users/:id/places')
+  .post(placesController.getUserPlaces)
+
 router.route('/users/authenticate')
   .post(usersController.authenticate)
 

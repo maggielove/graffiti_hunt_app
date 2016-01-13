@@ -1,6 +1,7 @@
 'use strict';
 var Place = require('../models/place');
 var request = require('request');
+var currentUserPlaces = [];
 // google
 var key = process.env.GMAPS_KEY;
 // foursquare
@@ -58,9 +59,58 @@ function updatePlace(request, response) {
   });
 };
 
+function getUserPlaces(request, response) {
+  let userPlaceIdArray = request.body;
+  console.log(request.body);
+
+  ////|||
+  // findPlacesInDb(userPlaceIdArray)
+  // .then
+  //   response.json ( { currentUserPlaces: currentUserPlaces });
+////|||
+
+  // Loop through the array of place ids for the current user
+  for (var i = 0; i < userPlaceIdArray.length; i++) {
+    console.log('userPlaceId: ' + userPlaceIdArray[i]);
+    Place.findById( {_id: userPlaceIdArray[i] }, function(error, place) {
+      if (error) response.json( { message: 'Error finding location: ' + error });
+      if (place !== undefined) currentUserPlaces.push(place);
+      return currentUserPlaces;
+      // console.log(place);
+      // if (place._id == userPlaceIdArray[i]) {
+      //   console.log('place/ back end: ' + place);
+      //   currentUserPlaces.push(place);
+      // }
+    })
+    .then (function(data) {
+      response.json( {currentUserPlaces: currentUserPlaces });
+
+    })
+  }
+  console.log('currentUserPlaces: ' + currentUserPlaces);
+}
+
+// function findPlacesInDb(userPlaceIdArray) {
+//   for (var i = 0; i < userPlaceIdArray.length; i++) {
+//     console.log('userPlaceId: ' + userPlaceIdArray[i]);
+//     Place.findById( {_id: userPlaceIdArray[i] }, function(error, place) {
+//       if (error) response.json( { message: 'Error finding location: ' + error });
+//       if (place !== undefined) currentUserPlaces.push(place);
+//       return currentUserPlaces;
+//       // console.log(place);
+//       // if (place._id == userPlaceIdArray[i]) {
+//       //   console.log('place/ back end: ' + place);
+//       //   currentUserPlaces.push(place);
+//       // }
+//     })
+//     console.log(currentUserPlaces);
+//     }
+// }
+
 module.exports = {
   findAll: findAll,
   showPlace: showPlace,
   insertPlace: insertPlace,
-  updatePlace: updatePlace
+  updatePlace: updatePlace,
+  getUserPlaces: getUserPlaces
 }

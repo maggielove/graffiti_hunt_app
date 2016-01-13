@@ -18,6 +18,8 @@ function PlacesController(findUserService, $http){
   self.lat = lat;
   self.lng = lng;
   self.markPlaceVisited = markPlaceVisited;
+  self.addPlaceToUser = addPlaceToUser;
+  self.userPlaceIds = {};
   self.display = false;
   // self.checkIn = checkIn;
 
@@ -90,22 +92,33 @@ function PlacesController(findUserService, $http){
         console.log('result of service in markPlaceVisited: ' + data);
         self.currentUserId = data;
         return self.currentUserId;
-        // return self.currentUserId = data;
-        // return self.currentUserId;
       })
+      // Once you have the current user id, call function that will add location...
+      //... to the user's account
       .then(function(data) {
-        console.log('currentUserId: ' + self.currentUserId)
+        addPlaceToUser();
+        // console.log('currentUserId: ' + self.currentUserId)
       });
-      // $http
-      // .put('/users/' + currentUserId)
-      // .then(function(response) {
-      //   // add a var to service that returns a user's list of place ids...
-      // })
-
-    // back end? .post .then get user's places
-    // currentUser.places.push(self.single._id);
   }
-  console.log(self.currentUserId);
+
+  function addPlaceToUser(place) {
+    $http
+    .put('/users/' + self.currentUserId, self.single)
+    .then(function(response) {
+      // When user information is sent back from the database, capture the place ids.
+      self.userPlaceIds = response.data.user.places;
+      $http
+      .post('/users/' + self.currentUserId + '/places', self.userPlaceIds)
+      .then(function(response) {
+        console.log('array of place hashes: ' + response.data.currentUserPlaces);
+      })
+      // function similar to getPlaces() that gets user's place ids--then display
+      //// this in Angular.
+      // You could send the user { } to the backend places, and there loop through each id
+      ////// ... to get place name, info, (date added), (user comments), user photos
+      // add a var to service that returns a user's list of place ids...
+    })
+  }
 
   ///GOOGLE MAP & MARKER JS START ///
   function initialize() {

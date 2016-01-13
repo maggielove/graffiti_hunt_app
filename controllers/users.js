@@ -58,10 +58,15 @@ function findCurrentUser(req, res){
 
 function updateUser(request, response) {
   let id = request.params.id;
-  console.log('request.body shd b place id: ' + request.body.data);
+  let placeId = request.body._id
+  console.log('request.body shd be place id: ' + request.body._id);
+  // Match the user in the database to the user whose token is currently being
+  ///saved in session storage.
   User.findById({ _id: id}, function(error, user) {
     if (error) response.json( { message: 'Error finding user: ' + user});
-    user.places.push(request.body)
+    // When the user clicks 'add to my list of places', add the place Id to that
+    ////user in the db.
+    user.places.push(placeId);
     user.save(function(error) {
       if (error) response.json({ message: 'Error saving user: ' + error});
       response.json({ message: 'User updated', user: user});
