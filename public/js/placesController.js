@@ -44,7 +44,7 @@ function PlacesController(findUserService, $http){
   getPlaces();
 
   //for logged-in user:
-  getUserPlaces();
+  // getUserPlaces();
 
   function getPlaces(){
     $http
@@ -147,14 +147,127 @@ function PlacesController(findUserService, $http){
 
   ///GOOGLE MAP & MARKER JS START ///
   function initialize() {
+    //styles are from 'Candy Colours' template on snazzymaps.com
+    var styles = [
+      {
+        "featureType": "landscape",
+        "stylers": [
+            {
+                "hue": "#FFE100"
+            },
+            {
+                "saturation": 34.48275862068968
+            },
+            {
+                "lightness": -1.490196078431353
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "road.highway",
+        "stylers": [
+            {
+                "hue": "#FF009A"
+            },
+            {
+                "saturation": -2.970297029703005
+            },
+            {
+                "lightness": -17.815686274509815
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "road.arterial",
+        "stylers": [
+            {
+                "hue": "#FFE100"
+            },
+            {
+                "saturation": 8.600000000000009
+            },
+            {
+                "lightness": -4.400000000000006
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "road.local",
+        "stylers": [
+            {
+                "hue": "#00C3FF"
+            },
+            {
+                "saturation": 29.31034482758622
+            },
+            {
+                "lightness": -38.980392156862735
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "water",
+        "stylers": [
+            {
+                "hue": "#0078FF"
+            },
+            {
+                "saturation": 0
+            },
+            {
+                "lightness": 0
+            },
+            {
+                "gamma": 1
+            }
+        ]
+    },
+    {
+        "featureType": "poi",
+        "stylers": [
+            {
+                "hue": "#00FF19"
+            },
+            {
+                "saturation": -30.526315789473685
+            },
+            {
+                "lightness": -22.509803921568633
+            },
+            {
+                "gamma": 1
+            }
+        ]
+      }
+    ];
+
+    var styledMap = new google.maps.StyledMapType(styles, {name: "Styled Map"});
 
     var mapProp = {
       // change center to bounds
       center:new google.maps.LatLng(40.7401398, -73.9896869),
       zoom:12,
-      mapTypeId:google.maps.MapTypeId.ROADMAP
+      mapTypeControlOptions: {
+        mapTypeIds: [google.maps.MapTypeId.ROADMAP, 'map_style']
+      }
     };
     var map=new google.maps.Map(document.getElementById("map-canvas"), mapProp);
+
+    // Associate styled map with MapTypeId, set it to display.
+    map.mapTypes.set('map_style', styledMap);
+    map.setMapTypeId('map_style');
 
     // set markers for every street art location in the app's db
     var markers = [];
