@@ -14,7 +14,7 @@
     <h3 id="list-header">All Art Spots</h3>
     <ul id="venues-list">
       <!--  putting Users COntroller here, nested inside the places controller, to do functions requiring user and place -->
-      <li ng-repeat="place in places.all"><input ng-controller="UsersController as Users" type="checkbox"/><a ng-click="places.display = true; places.viewPlace(place)" ng-href="#" ng-class= "{ active: display }">{{place.name}}</a>
+      <li ng-repeat="place in places.all"><a ng-click="places.display = true; places.viewPlace(place)" ng-href="#" ng-class= "{ active: display }">{{place.name}}</a>
         <!-- ng-click="places.viewPlace(place)" ng-href="#" -->
         <!-- ui-sref="single" -->
         <!-- ui-sref="single" -->

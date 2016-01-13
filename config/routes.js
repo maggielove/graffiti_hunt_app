@@ -21,10 +21,12 @@ router.route('/places/:id')
   .put(placesController.updatePlace)
 
 router.route('/users/:id')
+  .get(usersController.findSavedPlaces)
   .put(usersController.updateUser)
 
 router.route('/users/:id/places')
-  .post(placesController.getUserPlaces)
+  .get(placesController.findAllUserPlaces)
+  .post(placesController.updateUserPlaces)
 
 router.route('/users/authenticate')
   .post(usersController.authenticate)

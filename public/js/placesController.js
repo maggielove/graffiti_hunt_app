@@ -20,6 +20,8 @@ function PlacesController(findUserService, $http){
   self.markPlaceVisited = markPlaceVisited;
   self.addPlaceToUser = addPlaceToUser;
   self.userPlaceIds = {};
+  self.userPlaces = [];
+  self.getUserPlaces = getUserPlaces;
   self.display = false;
   // self.checkIn = checkIn;
 
@@ -40,6 +42,10 @@ function PlacesController(findUserService, $http){
   getLocation();
 
   getPlaces();
+
+  //for logged-in user:
+  getUserPlaces();
+
   function getPlaces(){
     $http
       .get('/places')
@@ -101,6 +107,30 @@ function PlacesController(findUserService, $http){
       });
   }
 
+  function getUserPlaces() {
+    findUserService.getCurrentUser()
+      .then(function(data){
+        self.currentUserId = data;
+        return self.currentUserId;
+      })
+      .then(function(data){
+        $http
+          .get('/users/' + self.currentUserId)
+          .then(function(response) {
+
+            self.userPlaceIds = response.data.user.places;
+            $http
+            .post('/users/' + self.currentUserId + '/places', self.userPlaceIds)
+            .then(function(response) {
+              console.log('sample name fr array of place hashes: ' + response.data.currentUserPlaces[0].name);
+              self.userPlaces = response.data.currentUserPlaces;
+              console.log(self.userPlaces[0].name);
+            })
+        })
+      })
+      // console.log('currentUserId on page load: ' + self.currentUserId);
+  }
+
   function addPlaceToUser(place) {
     $http
     .put('/users/' + self.currentUserId, self.single)
@@ -110,7 +140,9 @@ function PlacesController(findUserService, $http){
       $http
       .post('/users/' + self.currentUserId + '/places', self.userPlaceIds)
       .then(function(response) {
-        console.log('array of place hashes: ' + response.data.currentUserPlaces);
+        console.log('sample name fr array of place hashes: ' + response.data.currentUserPlaces[0].name);
+        self.userPlaces = response.data.currentUserPlaces;
+        console.log(self.userPlaces[0].name);
       })
       // function similar to getPlaces() that gets user's place ids--then display
       //// this in Angular.
@@ -119,6 +151,10 @@ function PlacesController(findUserService, $http){
       // add a var to service that returns a user's list of place ids...
     })
   }
+
+  // function retrieveCurrentUserPlaces() {
+  //
+  // }
 
   ///GOOGLE MAP & MARKER JS START ///
   function initialize() {

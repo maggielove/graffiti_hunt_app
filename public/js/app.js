@@ -63,5 +63,16 @@ function PlaceRouter($stateProvider, $urlRouterProvider) {
       }
     }
   })
+  .state('user', {
+    url: '/myplaces',
+    views: {
+      'places' : {
+        templateUrl: 'user-list.html'
+      },
+      'users' : {
+        templateUrl: 'login.html'
+      }
+    }
+  })
 
 }

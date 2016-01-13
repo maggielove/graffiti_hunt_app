@@ -20,6 +20,14 @@ function findAll(request, response) {
   });
 };
 
+function findAllUserPlaces(request, response) {
+  // Place.find(function (err, places) {
+    if (err) response.json ({ message: 'No places found.'});
+    console.log('current user placessss: ' + currentUserPlaces);
+    response.json({ currentUserPlaces: currentUserPlaces });
+  // });
+};
+
 function showPlace(request, response) {
   let id = request.params.id;
   Place.find( { _id: id}, function(error, place) {
@@ -29,7 +37,6 @@ function showPlace(request, response) {
     console.log("place: " + place )
   })
 }
-
 
 function insertPlace(request, response) {
   console.log('request.body: ' + request.body)
@@ -59,16 +66,8 @@ function updatePlace(request, response) {
   });
 };
 
-function getUserPlaces(request, response) {
+function updateUserPlaces(request, response) {
   let userPlaceIdArray = request.body;
-  console.log(request.body);
-
-  ////|||
-  // findPlacesInDb(userPlaceIdArray)
-  // .then
-  //   response.json ( { currentUserPlaces: currentUserPlaces });
-////|||
-
   // Loop through the array of place ids for the current user
   for (var i = 0; i < userPlaceIdArray.length; i++) {
     console.log('userPlaceId: ' + userPlaceIdArray[i]);
@@ -76,41 +75,18 @@ function getUserPlaces(request, response) {
       if (error) response.json( { message: 'Error finding location: ' + error });
       if (place !== undefined) currentUserPlaces.push(place);
       return currentUserPlaces;
-      // console.log(place);
-      // if (place._id == userPlaceIdArray[i]) {
-      //   console.log('place/ back end: ' + place);
-      //   currentUserPlaces.push(place);
-      // }
     })
     .then (function(data) {
       response.json( {currentUserPlaces: currentUserPlaces });
-
     })
   }
-  console.log('currentUserPlaces: ' + currentUserPlaces);
 }
-
-// function findPlacesInDb(userPlaceIdArray) {
-//   for (var i = 0; i < userPlaceIdArray.length; i++) {
-//     console.log('userPlaceId: ' + userPlaceIdArray[i]);
-//     Place.findById( {_id: userPlaceIdArray[i] }, function(error, place) {
-//       if (error) response.json( { message: 'Error finding location: ' + error });
-//       if (place !== undefined) currentUserPlaces.push(place);
-//       return currentUserPlaces;
-//       // console.log(place);
-//       // if (place._id == userPlaceIdArray[i]) {
-//       //   console.log('place/ back end: ' + place);
-//       //   currentUserPlaces.push(place);
-//       // }
-//     })
-//     console.log(currentUserPlaces);
-//     }
-// }
 
 module.exports = {
   findAll: findAll,
   showPlace: showPlace,
   insertPlace: insertPlace,
   updatePlace: updatePlace,
-  getUserPlaces: getUserPlaces
+  updateUserPlaces: updateUserPlaces,
+  findAllUserPlaces: findAllUserPlaces
 }

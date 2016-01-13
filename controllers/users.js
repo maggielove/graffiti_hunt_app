@@ -59,7 +59,6 @@ function findCurrentUser(req, res){
 function updateUser(request, response) {
   let id = request.params.id;
   let placeId = request.body._id
-  console.log('request.body shd be place id: ' + request.body._id);
   // Match the user in the database to the user whose token is currently being
   ///saved in session storage.
   User.findById({ _id: id}, function(error, user) {
@@ -74,6 +73,14 @@ function updateUser(request, response) {
   });
 };
 
+function findSavedPlaces(request, response) {
+  let id = request.params.id;
+  User.findById( {_id: id}, function(error, user) {
+    if (error) response.json( {message: 'Unable to find user: ' + user});
+    response.json( {message: 'User found', user: user});
+  })
+};
+
 // function test(){
 //   console.log('If you\'re reading this it should mean user has been granted token');
 // }
@@ -82,6 +89,7 @@ module.exports = {
   authenticate: authenticate,
   // test: test,
   findCurrentUser: findCurrentUser,
-  updateUser: updateUser
+  updateUser: updateUser,
+  findSavedPlaces: findSavedPlaces
   // getAccessToken: getAccessToken
 }
