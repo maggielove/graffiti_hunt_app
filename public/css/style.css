@@ -18,15 +18,6 @@ ul{
   margin-left: -30px;
 }
 
-a {
-  text-decoration: none;
-  color: #336600
-}
-
-a:visited{
-  color: #75a3a3;
-}
-
 label {
   padding-right: 50px;
 }
@@ -185,12 +176,33 @@ nav.tabs div:hover{
   margin-left: 0px;
 }
 
+/* List of locations */
 #list-header {
   font-family: 'Roboto Condensed', sans-serif;
+  width: 40%;
   font-size: 20px;
-  border-bottom: 1px solid #595959;
+  color: #595959;
+  /*border-bottom: 1px solid #595959;*/
 }
 
 #place-view.self-active{
   height: 300px;
+}
+
+#place-view h1 {
+  color: #595959;
+}
+
+#venues-list li {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+#venues-list a {
+  text-decoration: none;
+  color: #336600
+}
+
+#venues-list a:visited{
+  color: #75a3a3;
 }
