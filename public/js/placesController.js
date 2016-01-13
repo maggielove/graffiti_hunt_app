@@ -60,6 +60,28 @@ function PlacesController(findUserService, $http){
       })
   }
 
+  function getUserPlaces() {
+    findUserService.getCurrentUser()
+      .then(function(data){
+        self.currentUserId = data;
+        return self.currentUserId;
+      })
+      .then(function(data){
+        $http
+          .get('/users/' + self.currentUserId)
+          .then(function(response) {
+
+            self.userPlaceIds = response.data.user.places;
+            $http
+            .post('/users/' + self.currentUserId + '/places', self.userPlaceIds)
+            .then(function(response) {
+              self.userPlaces = response.data.currentUserPlaces;
+            })
+        })
+      })
+      // console.log('currentUserId on page load: ' + self.currentUserId);
+  }
+
   function viewPlace(place) {
     // var single = false;
     $http
@@ -107,30 +129,6 @@ function PlacesController(findUserService, $http){
       });
   }
 
-  function getUserPlaces() {
-    findUserService.getCurrentUser()
-      .then(function(data){
-        self.currentUserId = data;
-        return self.currentUserId;
-      })
-      .then(function(data){
-        $http
-          .get('/users/' + self.currentUserId)
-          .then(function(response) {
-
-            self.userPlaceIds = response.data.user.places;
-            $http
-            .post('/users/' + self.currentUserId + '/places', self.userPlaceIds)
-            .then(function(response) {
-              console.log('sample name fr array of place hashes: ' + response.data.currentUserPlaces[0].name);
-              self.userPlaces = response.data.currentUserPlaces;
-              console.log(self.userPlaces[0].name);
-            })
-        })
-      })
-      // console.log('currentUserId on page load: ' + self.currentUserId);
-  }
-
   function addPlaceToUser(place) {
     $http
     .put('/users/' + self.currentUserId, self.single)
@@ -140,21 +138,12 @@ function PlacesController(findUserService, $http){
       $http
       .post('/users/' + self.currentUserId + '/places', self.userPlaceIds)
       .then(function(response) {
-        console.log('sample name fr array of place hashes: ' + response.data.currentUserPlaces[0].name);
         self.userPlaces = response.data.currentUserPlaces;
+        console.log('sample name fr array of place hashes: ' + response.data.currentUserPlaces[0].name);
         console.log(self.userPlaces[0].name);
       })
-      // function similar to getPlaces() that gets user's place ids--then display
-      //// this in Angular.
-      // You could send the user { } to the backend places, and there loop through each id
-      ////// ... to get place name, info, (date added), (user comments), user photos
-      // add a var to service that returns a user's list of place ids...
     })
   }
-
-  // function retrieveCurrentUserPlaces() {
-  //
-  // }
 
   ///GOOGLE MAP & MARKER JS START ///
   function initialize() {

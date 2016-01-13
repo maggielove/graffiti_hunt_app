@@ -2,28 +2,6 @@
 angularApp
   .controller('UsersController', UsersController);
 
-// angularApp.service('currentUserService',  function($window, $http){
-//     var currentUser = {};
-//     var sessionToken = '';
-//
-//     // maybe $http should be here?..
-//     this.getCurrentUser = function(){
-//       sessionToken = $window.sessionStorage.getItem('token');
-//       $http
-//       .post('/users/current', sessionToken)
-//       .then(function(response){
-//         currentUser = response.data.user;
-//       })
-//       return currentUser;
-//     }
-//
-//     // Test this by trying it on places controller.
-//
-//       // END OF FACTORY FUNCTION. THEN PASS THIS TO PLACES CONTROLLER TO ADD TO USER's LIST OF PLACES.
-//       // Get id of location being added.
-//       // insert id of that location into user's list of locations.
-//   });
-
 UsersController.$inject = ['$http', '$window'];
 
 function UsersController($http, $window){
@@ -45,11 +23,11 @@ function UsersController($http, $window){
       if (response.data.token) {
         // $(#login-form).hide();
         alert("login successful");
+        // Here, use a service that will retrieve all of a user's places to display in "My Places"
+        //// ==> will then need to return a var in service that can be passed to PlacesController
         self.token = response.data.token;
         $window.sessionStorage.token = response.data.token;
-        console.log('response.data.user.username: ' + response.data.user.username);
         console.log('self.token: ', self.token);
-        console.log('$windowSessionStorage.token: ' + window.sessionStorage.token);
         return verified = true;
         // !"guest";
       } else {
