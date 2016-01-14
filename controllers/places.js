@@ -2,6 +2,7 @@
 var Place = require('../models/place');
 var request = require('request');
 var currentUserPlaces = [];
+var foundUserPlaces = [];
 // google
 var key = process.env.GMAPS_KEY;
 // foursquare
@@ -81,6 +82,9 @@ function updateUserPlaces(request, response) {
     })
   }
 }
+
+//** add a function that FINDS user places--push these into the foundUserPlaces array,
+//// send them back to the front end. 
 
 module.exports = {
   findAll: findAll,

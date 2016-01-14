@@ -30,7 +30,10 @@
 
     <div id="content-wrapper">
       <section class="text" id="places-section" ng-controller="PlacesController as places" ui-view='places'>
+        <section class="text" id="user-places" ng-controller="UsersController as users" ui-view="myplaces">
+        </section>
       </section>
+
       <div id="google-map">
         <div id="map-canvas" class="mapping">
         </div>

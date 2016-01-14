@@ -176,6 +176,18 @@ nav.tabs div:hover{
   margin-left: 0px;
 }
 
+/*#user-places {
+  z-index: 2;
+  position: absolute;
+  background-color: #e6e6e6;
+  height: 630px;
+  width: 40%;
+  border-radius: 5px;
+  /*border: 1px solid black;*/
+  /*margin-top: 0px;
+  margin-left: 0;
+}*/
+
 /* List of locations */
 #list-header {
   font-family: 'Roboto Condensed', sans-serif;

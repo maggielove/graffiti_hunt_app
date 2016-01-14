@@ -66,7 +66,7 @@ function PlaceRouter($stateProvider, $urlRouterProvider) {
   .state('user', {
     url: '/myplaces',
     views: {
-      'places' : {
+      'myplaces' : {
         templateUrl: 'user-list.html'
       },
       'users' : {

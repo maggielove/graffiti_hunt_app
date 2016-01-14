@@ -21,7 +21,7 @@ function PlacesController(findUserService, $http){
   self.addPlaceToUser = addPlaceToUser;
   self.userPlaceIds = {};
   self.userPlaces = [];
-  self.getUserPlaces = getUserPlaces;
+  // self.getUserPlaces = getUserPlaces;
   self.display = false;
   // self.checkIn = checkIn;
 
@@ -58,28 +58,6 @@ function PlacesController(findUserService, $http){
         initialize();
         // return "single=true"
       })
-  }
-
-  function getUserPlaces() {
-    findUserService.getCurrentUser()
-      .then(function(data){
-        self.currentUserId = data;
-        return self.currentUserId;
-      })
-      .then(function(data){
-        $http
-          .get('/users/' + self.currentUserId)
-          .then(function(response) {
-
-            self.userPlaceIds = response.data.user.places;
-            $http
-            .post('/users/' + self.currentUserId + '/places', self.userPlaceIds)
-            .then(function(response) {
-              self.userPlaces = response.data.currentUserPlaces;
-            })
-        })
-      })
-      // console.log('currentUserId on page load: ' + self.currentUserId);
   }
 
   function viewPlace(place) {
@@ -121,7 +99,7 @@ function PlacesController(findUserService, $http){
         self.currentUserId = data;
         return self.currentUserId;
       })
-      // Once you have the current user id, call function that will add location...
+      // Once you have the current user id, call function that will add location
       //... to the user's account
       .then(function(data) {
         addPlaceToUser();
@@ -337,8 +315,11 @@ function PlacesController(findUserService, $http){
 angularApp.service('findUserService', function($window, $http){
       // currentUser is a private variable
       var currentUser = '';
+      var userPlaceReferences = '';
+      var userPlaceObjects = '';
       // the function that will retrieve user information from the backend
       this.currentUserCall;
+      this.userPlacesCall;
       this.sessionToken = { currentToken: '' };
 
       this.getCurrentUser = function(){
@@ -358,8 +339,58 @@ angularApp.service('findUserService', function($window, $http){
         // Return the function of currentUserCall so that the data (returned currentUser)
         /// is available to the places controller, above.
         return this.currentUserCall;
-      } // end service
+      } //end getCurrentUser
+
+      console.log('floating currentUserId inside service: ' + currentUser);
+
+      this.getUserPlaces = function(data){
+        this.userPlacesCall =
+        $http
+          .get('/users/' + currentUser)
+          .then(function(response) {
+            userPlaceReferences = response.data.user.places;
+            $http
+            // instead of pushing ids into the array (= adds repeats of location at log-in), make a new function in places controller that finds
+            /////each id in the array we're sending to the back end and sends back those places.
+            .post('/users/' + self.currentUserId + '/places', userPlaceReferences)
+            // The response is an array of place hashes based on user place ids
+            .then(function(response) {
+              userPlaceObjects  = response.data.foundUserPlaces;
+              console.log('userPlaceObjects: ' + userPlaceObjects);
+              return userPlaceObjects;
+            })
+         return this.userPlacesCall;
+        })
+      } // ends this.userPlacesCall
     })
+
+    //To test, inject service in usersController, add it as a param to controller,
+    //////====> etc., then put this after successful login in usersController.
+    ////===> Run service.getCurrentUser().then(function(data) service.getUserPlaces();
+
+    // function getUserPlaces() {
+    //   // findUserService.getCurrentUser()
+    //   //
+    //   //   .then(function(data){
+    //   //     self.currentUserId = data;
+    //   //     return self.currentUserId;
+    //   //   })
+    //
+    //     .then(function(data){
+    //       $http
+    //         .get('/users/' + self.currentUserId)
+    //         .then(function(response) {
+    //
+    //           self.userPlaceIds = response.data.user.places;
+    //           $http
+    //           .post('/users/' + self.currentUserId + '/places', self.userPlaceIds)
+    //           .then(function(response) {
+    //             self.userPlaces = response.data.currentUserPlaces;
+    //           })
+    //       })
+    //     })
+    //     // console.log('currentUserId on page load: ' + self.currentUserId);
+    // }
 
 PlacesController.$inject = ['findUserService', '$http'];
 
