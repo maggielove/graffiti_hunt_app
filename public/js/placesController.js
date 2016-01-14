@@ -347,31 +347,36 @@ angularApp.service('findUserService', function($window, $http){
 
       console.log('floating currentUserId inside service: ' + currentUser);
 
-      this.getUserPlaces = function(){
-        return $http
-          // This retrieves the current user object
-          .get('/users/' + currentUser)
-          .then(function(response) {
-            return userPlaceReferences = response.data.user.places;
-            console.log('userPlaceReferences: ' + userPlaceReferences);
-            // this.userPlacesCall =
-            $http
-            // instead of pushing ids into the array (= adds repeats of location at log-in), make a new function in places controller that finds
-            /////each id in the array we're sending to the back end and sends back those places.
-            .post('/users/' + currentUser + '/places', userPlaceReferences)
-            // The response is an array of place hashes based on user place ids
-
-              .then(function(response) {
-                userPlaceObjects  = response.data.currentUserPlaces;
-                console.log('userPlaceObjects: ' + userPlaceObjects);
-                return userPlaceObjects;
-              })
-        //  return this.userPlacesCall;
-        })
-        // .then
-          this.placeObjects = userPlaceObjects;
-          console.log('this.userPlaceObjects: ' + this.placeObjects);
-      } // ends this.userPlacesCall
+      // this.getUserPlaces = function(){
+      //    $http
+      //     // This retrieves the current user object
+      //     .get('/users/' + currentUser)
+      //     .then(function(response) {
+      //       userPlaceReferences = response.data.user.places;
+      //       console.log('userPlaceReferences: ' + userPlaceReferences);
+      //       // this.userPlacesCall =
+      //       // var retrievePlaces = function(callbackFn);
+      //       return $http
+      //       // instead of pushing ids into the array (= adds repeats of location at log-in), make a new function in places controller that finds
+      //       /////each id in the array we're sending to the back end and sends back those places.
+      //       .post('/users/' + currentUser + '/places', userPlaceReferences)
+      //       // The response is an array of place hashes based on user place ids
+      //         .then(function(response){
+      //           userPlaceObjects  = response.data.currentUserPlaces;
+      //           return userPlaceObjects;
+      //         })
+      //
+      //         // .then(function(response) {
+      //         //   userPlaceObjects  = response.data.currentUserPlaces;
+      //         //   console.log('userPlaceObjects: ' + userPlaceObjects);
+      //         //   return userPlaceObjects;
+      //         // })
+      //   //  return this.userPlacesCall;
+      //   })
+      //   // .then
+      //     this.placeObjects = userPlaceObjects;
+      //     console.log('this.userPlaceObjects: ' + this.placeObjects);
+      // } // ends this.userPlacesCall
 
     })
 

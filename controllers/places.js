@@ -90,6 +90,10 @@ function updateUserPlaces(request, response) {
   }
 }
 
+function returnUserPlaces(request, response){
+  response.json({ currentUserPlaces: currentUserPlaces });
+}
+
 //** add a function that FINDS user places--push these into the foundUserPlaces array,
 //// send them back to the front end.
 
@@ -98,6 +102,7 @@ module.exports = {
   showPlace: showPlace,
   insertPlace: insertPlace,
   updatePlace: updatePlace,
-  updateUserPlaces: updateUserPlaces
+  updateUserPlaces: updateUserPlaces,
+  returnUserPlaces: returnUserPlaces
   // findAllUserPlaces: findAllUserPlaces
 }
