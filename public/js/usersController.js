@@ -11,6 +11,7 @@ function UsersController(findUserService, $http, $window){
   self.single = {};
   self.verified = {};
   self.token;
+  self.myPlaceIds = [];
   self.myPlaces = [];
 
   function loginUser(){
@@ -30,14 +31,17 @@ function UsersController(findUserService, $http, $window){
         // Here, use a service that will retrieve all of a user's places to display in "My Places"
         findUserService.getCurrentUser()
         .then(function(data) {
-          findUserService.getUserPlaces()
-          .then(function(data) {
-            self.myPlaces = data;
-            return self.myPlaces;
-          })
+          findUserService.getUserPlaces();
+          return self.myPlaces = data;
         })
+        // .then(function(customPlaceObjects){
+        //   self.myPlaces = customPlaceObjects;
+        //   console.log(self.myPlaces);
+        //   return self.myPlaces;
+        // });
+
         // userPlaceObjects
-        return verified = true;
+        // return verified = true;
         // !"guest";
       } else {
         alert("Username or password not a match. Please try again.");

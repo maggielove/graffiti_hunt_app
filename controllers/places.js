@@ -21,13 +21,19 @@ function findAll(request, response) {
   });
 };
 
-function findAllUserPlaces(request, response) {
-  // Place.find(function (err, places) {
-    if (err) response.json ({ message: 'No places found.'});
-    console.log('current user placessss: ' + currentUserPlaces);
-    response.json({ currentUserPlaces: currentUserPlaces });
-  // });
-};
+// function findAllUserPlaces(request, response) {
+//   // The request is the list of the current user's place ids.
+//   var myPlaces = [];
+//   let myPlaces = request.body;
+//   for (var i = 0; i < myPlaces.length; i++) {
+//
+//   }
+//   // Place.find(function (err, places) {
+//     // if (err) response.json ({ message: 'No places found.'});
+//     // console.log('current user placessss: ' + currentUserPlaces);
+//     // response.json({ currentUserPlaces: currentUserPlaces });
+//   // });
+// };
 
 function showPlace(request, response) {
   let id = request.params.id;
@@ -72,7 +78,8 @@ function updateUserPlaces(request, response) {
   // Loop through the array of place ids for the current user
   for (var i = 0; i < userPlaceIdArray.length; i++) {
     console.log('userPlaceId: ' + userPlaceIdArray[i]);
-    Place.findById( {_id: userPlaceIdArray[i] }, function(error, place) {
+    Place.findById( {_id: userPlaceIdArray[i]}, function(error, place) {
+      // {_id: "ObjectId(" + userPlaceIdArray[i] + ")" }
       if (error) response.json( { message: 'Error finding location: ' + error });
       if (place !== undefined) currentUserPlaces.push(place);
       return currentUserPlaces;
@@ -84,13 +91,13 @@ function updateUserPlaces(request, response) {
 }
 
 //** add a function that FINDS user places--push these into the foundUserPlaces array,
-//// send them back to the front end. 
+//// send them back to the front end.
 
 module.exports = {
   findAll: findAll,
   showPlace: showPlace,
   insertPlace: insertPlace,
   updatePlace: updatePlace,
-  updateUserPlaces: updateUserPlaces,
-  findAllUserPlaces: findAllUserPlaces
+  updateUserPlaces: updateUserPlaces
+  // findAllUserPlaces: findAllUserPlaces
 }
