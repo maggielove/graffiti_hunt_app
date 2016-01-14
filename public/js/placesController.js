@@ -96,7 +96,7 @@ function PlacesController(findUserService, $http){
     findUserService.getCurrentUser()
       .then(function(data){
         console.log('result of service in markPlaceVisited: ' + data);
-        self.currentUserId = data;
+        self.currentUserId = data._id;
         return self.currentUserId;
       })
       // Once you have the current user id, call function that will add location
@@ -317,7 +317,7 @@ function PlacesController(findUserService, $http){
 
 angularApp.service('findUserService', function($window, $http){
       // currentUser is a private variable
-      var currentUser = '';
+      var currentUser = {};
       var userPlaceReferences = '';
       var userPlaceObjects = '';
       this.placeObjects;
@@ -336,7 +336,8 @@ angularApp.service('findUserService', function($window, $http){
         /// the token of a user in the db.
         .post('/users/current', this.sessionToken)
         .then(function(response){
-          currentUser = response.data.user._id;
+          currentUser = response.data.user;
+          // currentUser = response.data.user._id;
           console.log('currentUser: ' + currentUser);
           return currentUser;
         })

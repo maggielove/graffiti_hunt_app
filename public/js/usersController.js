@@ -7,17 +7,19 @@ UsersController.$inject = ['findUserService', '$http', '$window', '$q'];
 function UsersController(findUserService, $http, $window, $q){
   let self = this;
   self.loginUser = loginUser;
-  self.getMyPlaces = getMyPlaces;
+  self.setCurrentUser = setCurrentUser;
+  self.retrieveMyPlaces = retrieveMyPlaces;
   self.test = test;
   self.single = {};
   self.verified = {};
   self.token;
-  self.currentUserId = '';
+  self.currentUser = {};
+  // self.currentUserId = '';
   self.myPlaceIds = [];
   self.myPlaces = [];
 
-  getMyPlaces();
-  console.log(self.myPlaces);
+  setCurrentUser();
+  console.log('self.myPlaces outside a function: ' + self.myPlaces);
 
   function loginUser(){
     var token;
@@ -25,6 +27,9 @@ function UsersController(findUserService, $http, $window, $q){
     $http
     .post('/users/authenticate', self.single)
     .then(function(response){
+      // self.currentUserId = response.data.user._id;
+      // console.log(self.currentUserId);
+      // return self.currentUserId;
       console.log('user.token after token save: ' + response.data.user.token)
       self.verified = response.data.user;
       if (response.data.token) {
@@ -32,7 +37,7 @@ function UsersController(findUserService, $http, $window, $q){
         self.token = response.data.token;
         $window.sessionStorage.token = response.data.token;
         console.log('self.token: ', self.token);
-        getMyPlaces();
+        // getMyPlaces();
         // return verified = true;
         // !"guest";
       } else {
@@ -41,16 +46,44 @@ function UsersController(findUserService, $http, $window, $q){
       }
       // console.log('verified var: ', verified);
       // console.log(response)
+    }).then(function(data){
+      setCurrentUser();
     })
   } //ends log in user function
 
-  function getMyPlaces(){
-    $http
-    .get('/users/5697c1580d9c33fb3ffd8f9a/places')
-    .then(function(response){
-      self.myPlaces = response.data.currentUserPlaces;
-      console.log(self.myPlaces);
+  console.log(self.currentUserId);
+
+  function setCurrentUser(){
+    findUserService.getCurrentUser()
+    .then(function(data){
+      self.currentUser = data;
+      console.log(self.currentUser);
+      return self.currentUser;
     })
+    .then(function(data){
+      retrieveMyPlaces()
+    })
+  }
+
+    function retrieveMyPlaces(){
+      // $http
+      // .post('/users/' + self.currentUser._id + '/places', self.currentUser.places)
+      // .then(function(response) {
+      //   self.myPlaces = response.data.currentUserPlaces;
+      //   console.log('sample name fr array of place hashes: ' + response.data.currentUserPlaces[0].name);
+      //   console.log(self.userPlaces[0].name);
+      // })
+      //This only works after you add  a place bc currentUserPlaces start as []
+      $http
+      .get('/users/' + self.currentUser._id + '/places')
+      // .get('/users/5697c1580d9c33fb3ffd8f9a/places')
+      .then(function(response){
+        self.myPlaces = response.data.currentUserPlaces;
+        console.log(self.myPlaces);
+        return self.myPlaces;
+      })
+    }
+
 
     // findUserService.getCurrentUser()
     // .then(function(data){
@@ -72,7 +105,6 @@ function UsersController(findUserService, $http, $window, $q){
     //     })
     //   })
     // })
-  }
 
   function test() {
     console.log('clicked test button');
