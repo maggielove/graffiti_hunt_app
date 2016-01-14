@@ -3,7 +3,6 @@
 function PlacesController(findUserService, $http){
   let self = this;
   self.all = [];
-  // self.currentUserId = currentUserId;
   self.single = {};
   self.editedPlace = {};
   self.client_id = '';
@@ -42,9 +41,6 @@ function PlacesController(findUserService, $http){
   getLocation();
 
   getPlaces();
-
-  //for logged-in user:
-  // getUserPlaces();
 
   function getPlaces(){
     $http
@@ -112,9 +108,9 @@ function PlacesController(findUserService, $http){
     .put('/users/' + self.currentUserId, self.single)
     .then(function(response) {
       // When user information is sent back from the database, capture the place ids.
-      // note! only store the last element in the array to send back to push in
+      // note-- only store the last element in the array to send back to push in
       /// ==change self.userPlaceIds below x2 to self.userJustAddedPlaceId = response.data.user.places.length-1[i]
-      // Or, better, instead of running .post, run the thing that happens at log in...make sure it doesn't reprint...
+      // Or, better instead of running .post, run .get?
       self.userPlaceIds = response.data.user.places;
       $http
       .post('/users/' + self.currentUserId + '/places', self.userPlaceIds)
@@ -348,66 +344,7 @@ angularApp.service('findUserService', function($window, $http){
 
       console.log('floating currentUserId inside service: ' + currentUser);
 
-      // this.getUserPlaces = function(){
-      //    $http
-      //     // This retrieves the current user object
-      //     .get('/users/' + currentUser)
-      //     .then(function(response) {
-      //       userPlaceReferences = response.data.user.places;
-      //       console.log('userPlaceReferences: ' + userPlaceReferences);
-      //       // this.userPlacesCall =
-      //       // var retrievePlaces = function(callbackFn);
-      //       return $http
-      //       // instead of pushing ids into the array (= adds repeats of location at log-in), make a new function in places controller that finds
-      //       /////each id in the array we're sending to the back end and sends back those places.
-      //       .post('/users/' + currentUser + '/places', userPlaceReferences)
-      //       // The response is an array of place hashes based on user place ids
-      //         .then(function(response){
-      //           userPlaceObjects  = response.data.currentUserPlaces;
-      //           return userPlaceObjects;
-      //         })
-      //
-      //         // .then(function(response) {
-      //         //   userPlaceObjects  = response.data.currentUserPlaces;
-      //         //   console.log('userPlaceObjects: ' + userPlaceObjects);
-      //         //   return userPlaceObjects;
-      //         // })
-      //   //  return this.userPlacesCall;
-      //   })
-      //   // .then
-      //     this.placeObjects = userPlaceObjects;
-      //     console.log('this.userPlaceObjects: ' + this.placeObjects);
-      // } // ends this.userPlacesCall
-
     })
-
-    //To test, inject service in usersController, add it as a param to controller,
-    //////====> etc., then put this after successful login in usersController.
-    ////===> Run service.getCurrentUser().then(function(data) service.getUserPlaces();
-
-    // function getUserPlaces() {
-    //   // findUserService.getCurrentUser()
-    //   //
-    //   //   .then(function(data){
-    //   //     self.currentUserId = data;
-    //   //     return self.currentUserId;
-    //   //   })
-    //
-    //     .then(function(data){
-    //       $http
-    //         .get('/users/' + self.currentUserId)
-    //         .then(function(response) {
-    //
-    //           self.userPlaceIds = response.data.user.places;
-    //           $http
-    //           .post('/users/' + self.currentUserId + '/places', self.userPlaceIds)
-    //           .then(function(response) {
-    //             self.userPlaces = response.data.currentUserPlaces;
-    //           })
-    //       })
-    //     })
-    //     // console.log('currentUserId on page load: ' + self.currentUserId);
-    // }
 
 PlacesController.$inject = ['findUserService', '$http'];
 

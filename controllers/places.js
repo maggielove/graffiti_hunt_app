@@ -2,14 +2,11 @@
 var Place = require('../models/place');
 var request = require('request');
 var currentUserPlaces = [];
+// var filteredPlaces = [];
 var foundUserPlaces = [];
 // google
 var key = process.env.GMAPS_KEY;
-// foursquare
-var client_id = process.env.CLIENT_ID;
-var client_secret = process.env.CLIENT_SECRET;
-var push_secret = process.env.PUSH_SECRET;
-//get the user's current location
+
 
 
 //Get
@@ -17,23 +14,9 @@ function findAll(request, response) {
   Place.find(function(err, places) {
     if (err) response.json({ message: 'No places found.'});
 
-    response.json( { places: places, client_id: client_id, client_secret: client_secret })
+    response.json( { places: places })
   });
 };
-
-// function findAllUserPlaces(request, response) {
-//   // The request is the list of the current user's place ids.
-//   var myPlaces = [];
-//   let myPlaces = request.body;
-//   for (var i = 0; i < myPlaces.length; i++) {
-//
-//   }
-//   // Place.find(function (err, places) {
-//     // if (err) response.json ({ message: 'No places found.'});
-//     // console.log('current user placessss: ' + currentUserPlaces);
-//     // response.json({ currentUserPlaces: currentUserPlaces });
-//   // });
-// };
 
 function showPlace(request, response) {
   let id = request.params.id;
@@ -74,6 +57,7 @@ function updatePlace(request, response) {
 };
 
 function updateUserPlaces(request, response) {
+  // filteredPlaces = [];
   currentUserPlaces = [];
   let userPlaceIdArray = request.body;
   // Loop through the array of place ids for the current user
@@ -83,6 +67,8 @@ function updateUserPlaces(request, response) {
       // {_id: "ObjectId(" + userPlaceIdArray[i] + ")" }
       if (error) response.json( { message: 'Error finding location: ' + error });
       if (place !== undefined) currentUserPlaces.push(place);
+      // Filter is a native method of ES5--will leave only elements that pass the onlyUnique callback function
+      // filteredPlaces = currentUserPlaces.filter(onlyUnique);
       return currentUserPlaces;
     })
     .then (function(data) {
@@ -91,12 +77,16 @@ function updateUserPlaces(request, response) {
   }
 }
 
+// Before adding a place id to a user's array of place ids, make sure it hasn't already been added.
+// This function checks to see that the index of the value being added is the lowest index
+// function onlyUnique(value, index, self){
+//   return self.indexOf(value) === index;
+// }
+
+// Find current user's places, send back to front end
 function returnUserPlaces(request, response){
   response.json({ currentUserPlaces: currentUserPlaces });
 }
-
-//** add a function that FINDS user places--push these into the foundUserPlaces array,
-//// send them back to the front end.
 
 module.exports = {
   findAll: findAll,
