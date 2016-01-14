@@ -74,6 +74,7 @@ function updatePlace(request, response) {
 };
 
 function updateUserPlaces(request, response) {
+  currentUserPlaces = [];
   let userPlaceIdArray = request.body;
   // Loop through the array of place ids for the current user
   for (var i = 0; i < userPlaceIdArray.length; i++) {
