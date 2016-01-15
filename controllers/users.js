@@ -7,6 +7,12 @@ let secret = process.env._SECRET;
 let mongoose = require('mongoose');
 var token;
 
+function signup(req, res){
+  let newUser = new User(req.body);
+  console.log(req.body);
+  newUser.save();
+}
+
 //Authenticate
 function authenticate(req, res){
   console.log('req.body.username: ' + req.body.username)
@@ -106,7 +112,8 @@ module.exports = {
   // test: test,
   findCurrentUser: findCurrentUser,
   updateUser: updateUser,
-  findSavedPlaces: findSavedPlaces
+  findSavedPlaces: findSavedPlaces,
+  signup: signup
   // logoutUser: logoutUser
   // getAccessToken: getAccessToken
 }

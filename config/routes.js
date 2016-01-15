@@ -30,8 +30,12 @@ router.route('/users/:id/places')
   .get(placesController.returnUserPlaces)
   .post(placesController.updateUserPlaces)
 
+router.route('/users/signup')
+    .post(usersController.signup)
+
 router.route('/users/authenticate')
   .post(usersController.authenticate)
+
 
 router.route('/users/current')
   .post(usersController.findCurrentUser);

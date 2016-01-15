@@ -6,12 +6,14 @@ UsersController.$inject = ['findUserService', '$http', '$window', '$q'];
 
 function UsersController(findUserService, $http, $window, $q){
   let self = this;
+  self.signupUser = signupUser;
   self.loginUser = loginUser;
   self.logoutUser = logoutUser;
   self.setCurrentUser = setCurrentUser;
   self.retrieveMyPlaces = retrieveMyPlaces;
   self.test = test;
   self.single = {};
+  self.new = {};
   self.verified = {};
   self.token;
   self.currentUser = {};
@@ -20,6 +22,12 @@ function UsersController(findUserService, $http, $window, $q){
 
   setCurrentUser();
   console.log('self.myPlaces outside a function: ' + self.myPlaces);
+
+  function signupUser(){
+    console.log('signing up user');
+    $http
+    .post('/users/signup', self.new)
+  }
 
   function loginUser(){
     console.log('trying to log in');

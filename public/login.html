@@ -2,12 +2,20 @@
   <div ng-show="verified=true"><p>hi {{ users.verified.username }}!  | <a ng-click="users.logoutUser()">log out</a></p></div>
 
   <form id="login-form" ng-submit="users.loginUser()">
-    <div class="login-fields" id="username-div"><strong>Username: </strong><input ng-model="users.single.username" id="username-input"/><div>
+    <div class="login-fields" id="username-div"><strong>Username: </strong><input ng-model="users.single.username" id="username-input"/></div>
     <div class="login-fields" id="password-div"><strong>Password: </strong><input type="password" ng-model="users.single.password" id="password-input"/>
-    <button type="submit" id="submit-login">Submit</button><div>
+    <button type="submit" id="submit-login">Submit</button></div>
   </form>
 </div>
 
+<div id="signup-div">
+  <h4>Sign Up</h4>
+  <form id="signup-form" ng-submit="users.signupUser()">
+    <div id="new-username"><strong>Username: </strong><input ng-model="users.new.username"/></div>
+    <div id="new-password"><strong>Password: </strong><input type="password" ng-model="users.new.password"/></div>
+    <button type="submit" id="submit-signup">Sign up</button></div>
+  </form>
+</div>
 <!-- <button ng-click="users.test()" type="submit" id="test-button">Test token header</button> -->
 
 
