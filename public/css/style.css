@@ -27,12 +27,12 @@ input {
   width: 220%;
 }
 
-#username-input {
-  width: 20%;
+.username-input {
+  width: 100%;
 }
 
-#password-input {
-  width: 20%;
+.password-input {
+  width: 100%;
 }
 
 textarea {
@@ -102,7 +102,7 @@ nav.tabs div:hover{
   width: 300px;
   display: block;
   margin: 0 auto;
-  margin-top: 40px;
+  margin-top: 50px;
   text-align: center;
 }
 
@@ -115,6 +115,25 @@ nav.tabs div:hover{
   margin: 0 auto;
   text-align: center;
   margin-bottom: 50px;
+}
+
+#welcome-links{
+  margin-top: 0px;
+  width: 20%;
+  margin-left: 85%;
+  height: 10px;
+  /*display: inline-block;*/
+  /*margin: 0 auto;*/
+}
+
+#welcome-links a {
+  color: #595959;
+  font-size: 18px;
+}
+
+#welcome-links a:hover {
+  cursor: pointer;
+  text-decoration:underline;
 }
 
 #content-wrapper {
@@ -180,23 +199,49 @@ text-area {
 }
 
 #signup-div {
-  width: 7%;
-  margin-top: -12%;
-  margin-left: 40%;
-}
-
-#login {
-  margin-left: 65%;
+  position: absolute;
+  margin-left: 74%;
+  margin-right: 5%;
+  margin-bottom: 0px;
+  margin-top: 5px;
+  opacity: 0.9;
+  width: 20%;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 0px;
+  padding-bottom: 120px;
   color: #595959;
+  border: 1px solid #e6008a;
   /*margin-right: 30px;*/
-  margin-bottom: 100px;
-  width: 100%;
   height: 50px;
 }
 
-#signup-div{
+#signup-field {
+  display: inline-block;
+}
+
+#login {
+  position: absolute;
+  margin-left: 74%;
+  margin-right: 5%;
+  margin-bottom: 0px;
+  margin-top: 5px;
+  opacity: 0.9;
+  width: 20%;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  padding-top: 20px;
+  padding-bottom: 55px;
   color: #595959;
-  background: blue;
+  border: 1px solid #e6008a;
+  /*margin-right: 30px;*/
+  height: 50px;
+}
+
+#signup-title {
+  margin-bottom: 10px;
 }
 
 /*#login-form {
@@ -212,21 +257,26 @@ text-area {
   cursor: pointer;
 }
 
-#login-link {
+#logged-in a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+/*#login-link {
   font-family: 'Roboto Condensed', sans-serif;
   float: right;
   margin-top: 15px;
   margin-right: 40px;
   font-size: 18px;
-}
+}*/
 
-#login-fields {
+/*#login-fields {
   width: 100px;
   height: 50px;
   padding:10px;
-  /*margin-left: 90%;*/
+  margin-left: 90%;
   display: inline-block;
-}
+}*/
 
 /*#username-div{
   width: 100%;
@@ -252,6 +302,7 @@ text-area {
   /*border: 1px solid black;*/
   margin-top: 0px;
   margin-left: 0px;
+  border-right: 1px solid #bfbfbf;
 }
 
 #user-places {

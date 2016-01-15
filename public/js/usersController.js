@@ -7,6 +7,7 @@ UsersController.$inject = ['findUserService', '$http', '$window', '$q'];
 function UsersController(findUserService, $http, $window, $q){
   let self = this;
   self.signupUser = signupUser;
+  self.welcomeUser = welcomeUser;
   self.loginUser = loginUser;
   self.logoutUser = logoutUser;
   self.setCurrentUser = setCurrentUser;
@@ -19,6 +20,11 @@ function UsersController(findUserService, $http, $window, $q){
   self.currentUser = {};
   self.myPlaceIds = [];
   self.myPlaces = [];
+  // Booleans that will set various log in forms, links to show or hide
+  self.loggingIn = false;
+  self.signingUp = false;
+  self.loggedIn = false;
+  self.loginLinks = true;
 
   setCurrentUser();
   console.log('self.myPlaces outside a function: ' + self.myPlaces);
@@ -27,6 +33,11 @@ function UsersController(findUserService, $http, $window, $q){
     console.log('signing up user');
     $http
     .post('/users/signup', self.new)
+    .then(welcomeUser());
+  }
+
+  function welcomeUser(){
+    self.signingUp = false; self.loginLinks = true
   }
 
   function loginUser(){
@@ -37,10 +48,12 @@ function UsersController(findUserService, $http, $window, $q){
     $http
     .post('/users/authenticate', self.single)
     .then(function(response){
-      console.log('user.token after token save: ' + response.data.user.token)
-      self.verified = response.data.user;
       if (response.data.token) {
+        console.log('user.token after token save: ' + response.data.user.token)
+        self.verified = response.data.user;
         alert("You are now logged in.");
+        self.loggedIn = true;
+        self.loggingIn = false;
         self.token = response.data.token;
         $window.sessionStorage.token = response.data.token;
         console.log('self.token: ', self.token);
@@ -87,6 +100,8 @@ function UsersController(findUserService, $http, $window, $q){
 
   function logoutUser(){
     delete $window.sessionStorage.token;
+    self.loggedIn = false;
+    self.loginLinks = true;
     // Also delete the token stored under user in database:
     // if (self.currentUser !== undefined) {
     // $http

@@ -1,21 +1,27 @@
-<div id="login">
-  <div ng-show="verified=true"><p>hi {{ users.verified.username }}!  | <a ng-click="users.logoutUser()">log out</a></p></div>
+<div id="welcome-links" ng-show="users.loginLinks">
+  <p><a id="login-link" ng-click="users.loggingIn = true; users.loginLinks = false">Log In </a> | <a ng-click="users.signingUp = true; users.loginLinks = false">Sign Up</a></p>
+</div>
 
+<div id="logged-in" ng-show="users.loggedIn"><p>hi {{ users.verified.username }}!  | <a ng-click="users.logoutUser()">log out</a></p></div>
+
+<div id="login" ng-show="users.loggingIn">
   <form id="login-form" ng-submit="users.loginUser()">
-    <div class="login-fields" id="username-div"><strong>Username: </strong><input ng-model="users.single.username" id="username-input"/></div>
-    <div class="login-fields" id="password-div"><strong>Password: </strong><input type="password" ng-model="users.single.password" id="password-input"/>
+    <div class="login-fields" id="username-div"><strong>Username: </strong><input ng-model="users.single.username" class="username-input"/></div>
+    <div class="login-fields" id="password-div"><strong>Password: </strong><input type="password" ng-model="users.single.password" class="password-input"/>
     <button type="submit" id="submit-login">Submit</button></div>
   </form>
 </div>
 
-<div id="signup-div">
-  <h4>Sign Up</h4>
+<!-- ng-show="users.signingUp" -->
+<div id="signup-div" ng-show="users.signingUp">
+  <h4 id="signup-title">Sign Up</h4>
   <form id="signup-form" ng-submit="users.signupUser()">
-    <div id="new-username"><strong>Username: </strong><input ng-model="users.new.username"/></div>
-    <div id="new-password"><strong>Password: </strong><input type="password" ng-model="users.new.password"/></div>
+    <div class="login-fields" id="new-username"><strong>Username: </strong><input ng-model="users.new.username" class="username-input"/></div>
+    <div class="login-fields" id="new-password"><strong>Password: </strong><input type="password" ng-model="users.new.password" class="password-input"/>
     <button type="submit" id="submit-signup">Sign up</button></div>
   </form>
 </div>
+
 <!-- <button ng-click="users.test()" type="submit" id="test-button">Test token header</button> -->
 
 
