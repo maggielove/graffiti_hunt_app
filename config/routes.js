@@ -23,6 +23,7 @@ router.route('/places/:id')
 router.route('/users/:id')
   .get(usersController.findSavedPlaces)
   .put(usersController.updateUser)
+  // .post(usersController.logoutUser)
   // .post(placesController.findAllUserPlaces)
 
 router.route('/users/:id/places')

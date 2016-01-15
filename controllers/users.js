@@ -62,7 +62,7 @@ function updateUser(request, response) {
   // Match the user in the database to the user whose token is currently being
   ///saved in session storage.
   User.findById({ _id: id}, function(error, user) {
-    if (error) response.json( { message: 'Error finding user: ' + user});
+    if (error) response.json( { message: 'Error finding user: ' + error});
     // When the user clicks 'add to my list of places', add the place Id to that
     ////user in the db.
     user.places.push(placeId);
@@ -73,10 +73,26 @@ function updateUser(request, response) {
   });
 };
 
+// function logoutUser(request, response){
+//   let id = request.params.id;
+//   User.findById({ _id: id}, function(error, user) {
+//     if (error) response.json( { message: 'Error finding user: ' + error});
+//     else if (user == undefined){
+//       response.json({rmessage: 'User not found'});
+//     } else {
+//       user.token = '';
+//       user.save(function(error){
+//           if (error) response.json( { message: 'Error finding user: ' + error});
+//           response.json({ message: 'Token deleted!', user: user })
+//           })
+//         }
+//     })
+//   }
+
 function findSavedPlaces(request, response) {
   let id = request.params.id;
   User.findById( {_id: id}, function(error, user) {
-    if (error) response.json( {message: 'Unable to find user: ' + user});
+    if (error) response.json( {message: 'Unable to find user: ' + error});
     response.json( {message: 'User found', user: user});
   })
 };
@@ -91,5 +107,6 @@ module.exports = {
   findCurrentUser: findCurrentUser,
   updateUser: updateUser,
   findSavedPlaces: findSavedPlaces
+  // logoutUser: logoutUser
   // getAccessToken: getAccessToken
 }

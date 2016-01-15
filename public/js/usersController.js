@@ -7,6 +7,7 @@ UsersController.$inject = ['findUserService', '$http', '$window', '$q'];
 function UsersController(findUserService, $http, $window, $q){
   let self = this;
   self.loginUser = loginUser;
+  self.logoutUser = logoutUser;
   self.setCurrentUser = setCurrentUser;
   self.retrieveMyPlaces = retrieveMyPlaces;
   self.test = test;
@@ -21,6 +22,8 @@ function UsersController(findUserService, $http, $window, $q){
   console.log('self.myPlaces outside a function: ' + self.myPlaces);
 
   function loginUser(){
+    console.log('trying to log in');
+    console.log(self.single);
     var token;
     var verified;
     $http
@@ -61,13 +64,34 @@ function UsersController(findUserService, $http, $window, $q){
   }
 
     function retrieveMyPlaces(){
+      // if (self.currentUser !== undefined) {
       $http
-      .get('/users/' + self.currentUser._id + '/places')      .then(function(response){
+      .get('/users/' + self.currentUser._id + '/places')
+      .then(function(response){
         self.myPlaces = response.data.currentUserPlaces;
         console.log(self.myPlaces);
         return self.myPlaces;
       })
+    // } else {
+    //   console.log('User must log in for place list to display');
+    //   }
     }
+
+  function logoutUser(){
+    delete $window.sessionStorage.token;
+    // Also delete the token stored under user in database:
+    // if (self.currentUser !== undefined) {
+    // $http
+    // .post('/users/' + self.currentUser._id)
+    // .then(function(response){
+    //   console.log(response);
+    // }).then(function(response){
+    //   delete $window.sessionStorage.token;
+    //   })
+    // } else {
+    //   console.log('User has not logged in.');
+    // }
+  }
 
   function test() {
     console.log('clicked test button');

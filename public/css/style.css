@@ -191,6 +191,15 @@ text-area {
 
 }*/
 
+#login a {
+  color: #75a3a3;
+}
+
+#login a:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
 #login-link {
   font-family: 'Roboto Condensed', sans-serif;
   float: right;
@@ -231,17 +240,26 @@ text-area {
   margin-left: 0px;
 }
 
-/*#user-places {
-  z-index: 2;
-  position: absolute;
-  background-color: #e6e6e6;
-  height: 630px;
-  width: 40%;
-  border-radius: 5px;
-  /*border: 1px solid black;*/
-  /*margin-top: 0px;
-  margin-left: 0;
-}*/
+#user-places {
+  margin-top: 10%;
+  margin-left: 10%;
+}
+
+#my-places-title {
+  color: #595959;
+}
+
+#my-places-list {
+  width: 270%;
+  color: #333333;
+  list-style-type: circle;
+}
+
+#my-places-list li {
+  color: #333333;
+  padding: 10px;
+  /*width: 80%;*/
+}
 
 /* List of locations */
 #list-header {

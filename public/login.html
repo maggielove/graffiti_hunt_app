@@ -1,5 +1,5 @@
 <div id="login">
-  <div ng-show="verified=true"><p>hi {{ users.verified.username }}! <a> | log out</a></p></div>
+  <div ng-show="verified=true"><p>hi {{ users.verified.username }}!  | <a ng-click="users.logoutUser()">log out</a></p></div>
 
   <form id="login-form" ng-submit="users.loginUser()">
     <div class="login-fields" id="username-div"><strong>Username: </strong><input ng-model="users.single.username" id="username-input"/><div>
