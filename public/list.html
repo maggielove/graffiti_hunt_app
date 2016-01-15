@@ -1,12 +1,12 @@
 <div id="art-list">
   <div id="place-view">
     <h1>{{places.single.name}}</h1>
-    <p>{{places.single.address}}</p>
-    <p>{{places.single.city}}</p>
-    <p>{{places.single.zipcode}}</p>
+    <h3>{{places.single.address}}</h3>
+    <h3>{{places.single.city}}</h3>
+    <h3>{{places.single.zipcode}}</h3>
     <p>{{places.single.artInfo}}</p>
     <p>{{places.single.areaInfo}}</p>
-    <div ng-show="places.display"><a ui-sref="edit" ng-click="">(edit) | </a><a ng-href="#" ng-click="places.markPlaceVisited()">add to my list of places</a></div>
+    <div id="place-view-links" ng-show="places.display"><a id="edit-link" ui-sref="edit" ng-click="">edit </a><a ng-href="#" ng-click="places.markPlaceVisited()">add to list of places I've seen</a></div>
 
   </div>
 

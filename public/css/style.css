@@ -19,7 +19,29 @@ ul{
 }
 
 label {
-  padding-right: 50px;
+  /*padding-right: 50px;*/
+  width: 200%;
+}
+
+input {
+  width: 220%;
+}
+
+#username-input {
+  width: 100%;
+}
+
+#password-input {
+  width: 100%;
+}
+
+textarea {
+  width: 220%;
+  height: 60px;
+}
+
+.form-div {
+  width: 300px;
 }
 
 .text {
@@ -118,20 +140,30 @@ nav.tabs div:hover{
 }
 
 #map-canvas {
-  width: 100%;
-  height: 630px;
+  width: 98%;
+  height: 830px;
+  margin-bottom: 200px;
 }
 
 /*Log In*/
 
 /*New and edit forms*/
 .form-wrapper {
-  margin-left: 25px;
+  width: 100%;
+  margin-left: 5%;
+  margin-top: 10%;
+  /*margin-left: 25px;*/
 }
 
-#form {
-  margin-top: 50px;
+form {
+  width: 100%;
+  /*margin-top: 50px;*/
   /*position: absolute;*/
+}
+
+text-area {
+  width: 150%;
+  height: 100px;
 }
 
 /*new form*/
@@ -153,6 +185,10 @@ nav.tabs div:hover{
   margin-bottom: 100px;
 }
 
+/*#login-form {
+  width: 200%;
+}*/
+
 #login-link {
   font-family: 'Roboto Condensed', sans-serif;
   float: right;
@@ -168,7 +204,7 @@ nav.tabs div:hover{
   z-index: 2;
   position: absolute;
   background-color: #e6e6e6;
-  height: 630px;
+  height: 830px;
   width: 40%;
   border-radius: 5px;
   /*border: 1px solid black;*/
@@ -192,9 +228,16 @@ nav.tabs div:hover{
 #list-header {
   font-family: 'Roboto Condensed', sans-serif;
   width: 40%;
-  font-size: 20px;
+  font-size: 26px;
   color: #595959;
   /*border-bottom: 1px solid #595959;*/
+}
+
+#place-view {
+  margin-bottom: 30px;
+  /*width: 70%;
+  padding: 30px;
+  background-color: #f2f2f2;*/
 }
 
 #place-view.self-active{
@@ -203,6 +246,35 @@ nav.tabs div:hover{
 
 #place-view h1 {
   color: #595959;
+  margin-bottom: 10px;
+}
+
+#place-view h3 {
+  font-size: 16px;
+  color: #595959;
+  padding-bottom: 0px;
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 0px;
+}
+
+
+#place-view-links a{
+  text-decoration: none;
+  background-color: #cce5ff;
+  color: black;
+  font-size: 15px;
+  padding: 10px;
+  box-shadow: 5px 5px 10px #888888;
+}
+
+#place-view-links a:hover {
+  color: #f2f2f2;
+  background-color: #595959;
+}
+
+#edit-link {
+  margin-right: 30px;
 }
 
 #venues-list li {
@@ -212,9 +284,15 @@ nav.tabs div:hover{
 
 #venues-list a {
   text-decoration: none;
-  color: #336600
+  color: #39ac73;
+  font-size: 18px;
 }
 
-#venues-list a:visited{
+#venues-list a:hover {
+  text-decoration: underline;
+  color:  #e6008a;
+}
+
+#venues-list a:visited {
   color: #75a3a3;
 }
