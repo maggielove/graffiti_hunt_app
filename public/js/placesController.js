@@ -13,6 +13,7 @@ function PlacesController(findUserService, $http){
   self.addPlace = addPlace;
   self.newPlace = { loc: [0, 0] };
   self.editPlace = editPlace;
+  self.deletePlace = deletePlace;
   self.initialize = initialize;
   self.lat = lat;
   self.lng = lng;
@@ -86,6 +87,14 @@ function PlacesController(findUserService, $http){
     .then(function(response) {
       getPlaces();
     })
+  }
+
+  function deletePlace(place){
+    $http
+    .delete('/places/' + self.single._id)
+    .then(function(response){
+      getPlaces();
+    });
   }
 
   function markPlaceVisited(place){

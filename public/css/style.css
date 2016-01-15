@@ -379,6 +379,10 @@ text-area {
   margin-right: 30px;
 }
 
+#delete-button {
+  margin-left: 30px;
+}
+
 #venues-list li {
   margin-top: 20px;
   margin-bottom: 20px;

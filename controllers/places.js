@@ -88,12 +88,21 @@ function returnUserPlaces(request, response){
   response.json({ currentUserPlaces: currentUserPlaces });
 }
 
+function destroyPlace(request, response){
+  let id = request.params.id;
+  Place.remove({ _id: id}, function(error){
+    if (error) response.json({message: 'Unable to delete place because: ' + error});
+    response.json({message: 'Place deleted!'});
+  })
+}
+
 module.exports = {
   findAll: findAll,
   showPlace: showPlace,
   insertPlace: insertPlace,
   updatePlace: updatePlace,
   updateUserPlaces: updateUserPlaces,
-  returnUserPlaces: returnUserPlaces
+  returnUserPlaces: returnUserPlaces,
+  destroyPlace: destroyPlace
   // findAllUserPlaces: findAllUserPlaces
 }

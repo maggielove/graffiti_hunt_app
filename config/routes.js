@@ -19,6 +19,7 @@ router.route('/places')
 router.route('/places/:id')
   .get(placesController.showPlace)
   .put(placesController.updatePlace)
+  .delete(placesController.destroyPlace)
 
 router.route('/users/:id')
   .get(usersController.findSavedPlaces)

@@ -6,7 +6,7 @@
     <h3>{{places.single.zipcode}}</h3>
     <p>{{places.single.artInfo}}</p>
     <p>{{places.single.areaInfo}}</p>
-    <div id="place-view-links" ng-show="places.display"><a id="edit-link" ui-sref="edit" ng-click="">edit </a><a ng-href="#" ng-click="places.markPlaceVisited()">add to list of places I've seen</a></div>
+    <div id="place-view-links" ng-show="places.display"><a id="edit-link" ui-sref="edit" ng-click="">edit </a><a ng-href="#" ng-click="places.markPlaceVisited()">add to list of places I've seen</a><a id="delete-button" ng-href="#" ng-click="places.deletePlace()">delete</a></div>
 
   </div>
 
