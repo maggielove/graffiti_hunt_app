@@ -1,7 +1,7 @@
-'use strict';
+// 'use strict';
 
 function PlacesController(findUserService, $http){
-  let self = this;
+  var self = this;
   self.all = [];
   self.single = {};
   self.editedPlace = {};

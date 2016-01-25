@@ -1,5 +1,6 @@
 /*Styling for the entire page*/
 body {
+  /*-webkit-transform-style: preserve-3d;*/
   font-family: sans-serif;
   z-index: -1;
   position: absolute;
@@ -139,6 +140,7 @@ nav.tabs div:hover{
 #content-wrapper {
   position:absolute;
   z-index: 0;
+  /*-webkit-transform-style: preserve-3d;*/
   position: absolute;
   width:100%;
 }
@@ -155,10 +157,12 @@ nav.tabs div:hover{
   margin-top: 0;
   z-index: 1;
   position: absolute;
+  /*-webkit-transform-style: preserve-3d;*/
   /*margin-top: -25%;*/
 }
 
 #map-canvas {
+  /*-webkit-transform-style: preserve-3d;*/
   width: 98%;
   height: 830px;
   margin-bottom: 200px;
@@ -293,6 +297,7 @@ text-area {
 }*/
 
 #places-section {
+  /*-webkit-transform-style: preserve-3d;*/
   z-index: 2;
   position: absolute;
   background-color: #e6e6e6;

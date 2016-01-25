@@ -1,11 +1,11 @@
-'use strict';
+// 'use strict';
 angularApp
   .controller('UsersController', UsersController);
 
 UsersController.$inject = ['findUserService', '$http', '$window', '$q'];
 
 function UsersController(findUserService, $http, $window, $q){
-  let self = this;
+  var self = this;
   self.signupUser = signupUser;
   self.welcomeUser = welcomeUser;
   self.loginUser = loginUser;
