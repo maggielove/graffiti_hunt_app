@@ -8,9 +8,9 @@ An app that helps users find and share street art locations.
 
 ## User Stories
 * As a user, I want to be able to view a  list of locations/addresses of works of street art that are within a walkable distance of each other.
-* As a user, I want to be able to "check in" at each street art spot.
-* (As a user, I want to be able to "like" a work of street art I've checked in at.)
-* (As a user, I want to be able to take a photo at a new street art spot.)
+* As a user, I want to be able to add a street art location to the map/ database.
+* As a user, I want to be able to "like" a work of street art I've visited.
+* As a user, I want to be able to take a photo at a new street art spot.
 * As a user, I want to be able to view the street art locations I've visited (along with accompanying photo and like information) whenever I log into the app.
 
 ## Wireframe & screenshot of the app available here:
@@ -18,7 +18,7 @@ An app that helps users find and share street art locations.
 
 ## Technologies used: 
 This is a Single-page MEAN application:   
-    * **MongoDB** is the database  
+    * MongoDB is the database  
     * Node.js (JavaScript runtime)  
     * Express is the framework for Node.js  
     * Angular is used to render data from the database on the front end.   
@@ -26,12 +26,10 @@ This is a Single-page MEAN application:
     * Google Maps JavaScript API: I used this API to display a Google Map, on which markers for all locations in the app's database are displayed.
 
 ## Approach: 
-I initially envisioned this app as a game that would connect users to the street art in their city, an idea I'd like to come back to and integrate into a future version of this app. Ultimately, I ended up changing the concept of the app to make it primarily a way for users to find and share street art locations. These locations, along with descriptions, are added both to the Google Map (at the location at which the user entered the location) and to a list of locations in the database (along with an accompanying description, address, etc.) that is visible to the user on the site. 
+The goal of this app is to give users a way to find and share street art locations. These locations, along with descriptions, are added both to the Google Map (at the location at which the user entered the location) and to a list of locations in the database (along with an accompanying description, address, etc.), both of which are visible to the user on the site. 
 
 ## Unsolved Problems:  
-In order to "check in" to a place with the Foursquare API, I needed an access token for the user logged in to my app. Following [these instructions](https://developer.foursquare.com/overview/auth) for "web server applications", I was able to get a code after allowing access to my Foursquare account, but I was not able to convert this code into a token. 
-
-I also wanted to implement image uploads using [filestack](https://www.filestack.com/?fp=1). But when I was able to get the filepicker button to load, other functions needed at page load were no longer happenning, so I'll probably look at using a callback function, for instance. (Note: when I was using this on December 16, it was called filepicker.) 
+I wanted to implement image uploads using [filestack](https://www.filestack.com/?fp=1), but I ran into issues with functions interfering with each other--most likely due to asynchronous functions.
 
 ## Next Steps 
 * Make sure location coordinates are written in the place model in a way that matches the MongoDB standard. 
@@ -41,6 +39,5 @@ I also wanted to implement image uploads using [filestack](https://www.filestack
 * Let user view a listing (and map markers) for street art near them (Geodist).
 * Let user search for a place (name)
 * Let a user "like" a street art location. 
-* HTML: 
-    * Single place view: Add labels for information being displayed
+
    
