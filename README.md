@@ -3,7 +3,7 @@
 ## Introduction  
 An app that helps users find and share street art locations.
 
-##Hosted Site
+## Hosted Site
 [link](https://graffiti-hunt.herokuapp.com/#/)
 
 ## User Stories
